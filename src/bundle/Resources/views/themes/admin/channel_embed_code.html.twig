@@ -1,0 +1,37 @@
+<script src="<path_to_library>/webpush-development.js"></script>
+<script type="text/javascript">
+    window.addEventListener('load', () => {
+        let config = {
+            'app': {
+                'client': {
+                    'defaultUrl': '{{ channel.fallbackUrl }}',
+                    'autosubscribe': true,
+                    'defaultSubscribedTags': '{% for tagId in channel.connectedTagIds %}{{ tagId }}, {% endfor %}'
+                },
+                'api': {
+                    'id': '{{ channel.id }}',
+                    'platformId': '{{ constant('Ethinking\\PushConnectorBundle\\Service\\PushApiService::WEB_PUSH') }}',
+                    'baseUrl': '{{ channel.apiUrl}}',
+                    'accessToken': '{{ channel.accessToken}}'
+                },
+                'firebase': {
+                    'projectId': '{{ channel.firebaseProjectId }}',
+                    'apiKey': '{{ channel.firebaseApiKey }}',
+                    'appId': '{{ channel.firebaseAppId }}',
+                    'messageSenderId': '{{ channel.firebaseMessagingSenderId }}',
+                    'serviceWorkerPath': '{{ channel.serviceWorkerPath }}'
+                },
+            },
+        };
+        let push = new PushDelivery(config);
+        if (push.isSupportedBrowser()) {
+            if (push.requestPermission()) {
+                push.init();
+            }else{
+                console.log("Permission not granted");
+            }
+        }else{
+            console.log("Browser not supported");
+        }
+    });
+</script>

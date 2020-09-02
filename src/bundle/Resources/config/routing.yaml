@@ -1,0 +1,57 @@
+#test to get bundle up and running for first setups
+ezplatform_push_connector_homepage:
+    path:     /push_connector
+    controller: Ethinking\PushConnectorBundle\Controller\DefaultController::indexAction
+
+ezplatform.push.main_settings.view:
+    path:     /push/mainsettings
+    controller: Ethinking\PushConnectorBundle\Controller\MainSettingsController::mainAction
+
+ezplatform.push.channel.view:
+    path:     /push/channel
+    controller: Ethinking\PushConnectorBundle\Controller\ChannelController::indexAction
+
+ezplatform.push.channel.create:
+    path:     /push/channel/create
+    controller: Ethinking\PushConnectorBundle\Controller\ChannelController::createAction
+    methods:  [GET, POST]
+
+ezplatform.push.channel.edit:
+    path:     /push/channel/{id}/update
+    controller: Ethinking\PushConnectorBundle\Controller\ChannelController::updateAction
+    methods:  [GET, PUT]
+
+ezplatform.push.channel.delete:
+    path:     /push/channel/delete
+    controller: Ethinking\PushConnectorBundle\Controller\ChannelController::deleteAction
+    methods:  [DELETE]
+
+ezplatform.push.channel.embedCode.generate:
+    path:     /push/channel/{id}/embedCode/generate
+    controller: Ethinking\PushConnectorBundle\Controller\ChannelController::generateEmbedCode
+    options:
+        expose: true
+
+ezplatform.push.archive.view:
+    path:     /push/archive
+    controller: Ethinking\PushConnectorBundle\Controller\ArchiveController::indexAction
+
+ezplatform.push.archive.details:
+    path:     /push/archive/details/{id}
+    controller: Ethinking\PushConnectorBundle\Controller\ArchiveController::detailsAction
+    options:
+        expose: true
+
+ezplatform.push.archive.more:
+    path:     /push/archive/more/{page}
+    controller: Ethinking\PushConnectorBundle\Controller\ArchiveController::moreArchiveAction
+    options:
+        expose: true
+
+#Content push
+ezplatform.push_content:
+    path: /push/content/{locationId}
+    methods: GET
+    requirements:
+        locationId: '\d+'
+    controller: Ethinking\PushConnectorBundle\Controller\ContentPushController:pushContentAction

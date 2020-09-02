@@ -1,0 +1,28 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">{{ 'push_delivery_platform'|trans({},'forms') }}</th>
+            <th scope="col">{{ 'push_delivery_status'|trans({},'forms') }}</th>
+            <th scope="col">{{ 'push_delivery_total_devices'|trans({},'forms') }}</th>
+            <th scope="col">{{ 'push_delivery_successful_devices'|trans({},'forms') }}</th>
+        </tr>
+    </thead>
+    <tbody id="statusTableBody">
+        {% for item in details %}
+            <tr>
+                <td>{{ item.platformName }}</td>
+                <td>
+                    {% if  item.state == "FINISHED" %}
+                        <span class="badge badge-success">{{ item.state }}</span>
+                    {% elseif  item.state == "FAILED" %}
+                        <span class="badge badge-danger">{{ item.state }}</span>
+                    {% else %}
+                        <span class="badge badge-info">{{ item.state }}</span>
+                    {% endif %}
+                </td>
+                <td><span class="badge badge-secondary">{{ item.totalCount }}</span></td>
+                <td><span class="badge badge-success">{{ item.successCount }}</span></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

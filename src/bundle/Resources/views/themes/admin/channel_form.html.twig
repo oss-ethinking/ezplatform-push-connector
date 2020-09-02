@@ -1,0 +1,89 @@
+{% extends "@ezdesign/ui/layout.html.twig" %}
+{% trans_default_domain 'views' %}
+{% form_theme form '@ezdesign/ui/form_fields.html.twig' %}
+{% block title %}{{ 'push.view.main_settings'|trans|desc('eZ Platform Push Connector Main Settings') }}{% endblock %}
+{% block stylesheets %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/themes/prism.min.css" rel="stylesheet" />
+{% endblock %}
+{% block javascripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    {{ encore_entry_script_tags('ezplatform-push-connector-channel-js', null, 'ezplatform') }}
+{% endblock %}
+{% block content %}
+    <div class="row align-items-stretch ez-main-row">
+        <div class="px-0 ez-content-container">
+            <div class="ez-header">
+                <div class="container">
+                    <ol class="breadcrumb px-4">
+                        <li class="breadcrumb-item" title="{{ 'push__main__menu__item'|trans({},'menu') }}">
+                            {{ 'push__main__menu__item'|trans({},'menu') }}
+                        </li>
+                        <li class="breadcrumb-item" title="{{ 'push__delivery__channel'|trans({},'menu') }}">
+                            <a href="{{ path('ezplatform.push.channel.view') }}" id="pushConnectorChannelResult">
+                                {{ 'push__delivery__channel'|trans({},'menu') }}
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item active">{{ title }}</li>
+                    </ol>
+                    <div class="ez-page-title py-3 px-4">
+                        <h1 class="ez-page-title__content-item">
+                            <svg class="ez-icon ez-icon-languages">
+                                <use xlink:href="/bundles/ezplatformadminui/img/ez-icons.svg#languages"></use>
+                            </svg>
+                            <span class="ez-page-title__content-name">{{ title }}</span>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid ez-main-container container mt-4 px-5">
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success">
+                        <a class="close" data-dismiss="alert" href="#">&times;</a>
+                        <ul>
+                            <li>
+                                {{ message }}
+                            </li>
+                        </ul>
+                    </div>
+                {% endfor %}
+
+                {% for message in app.flashes('error') %}
+                    <div class="alert alert-danger">
+                        <a class="close" data-dismiss="alert" href="#">&times;</a>
+                        <ul>
+                            <li>
+                                {{ message }}
+                            </li>
+                        </ul>
+                    </div>
+                {% endfor %}
+
+                {% if access_denied is defined %}
+                    {{ 'push.view.access_denied'|trans|desc('You are not allowed to access this view. Please contact the website administrator') }}
+                {% else %}
+                    <div class="display-results">
+                        <div class="display-results col-md-6">
+                            {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+                            {{ form_end(form) }}
+                            <small>{{ 'required'|trans|desc('* Required') }}</small>
+                            <div class="form-group" id="pushConnectorChannelCopyDiv">
+                                <div class="col-md-12">
+                                    <button type="button" id="pushConnectorChannelEmbedCodeCopyButton" data-clipboard-target="#pushConnectorChannelEmbedCode"> {{ 'push_delivery_copy_to_clipboard'|trans({},'forms') }}</button>
+                                </div>
+                            </div>
+                            <div class="form-group" id="pushConnectorChannelEmbedCodeDiv">
+                                <div class="col-md-12">
+                                    <pre>
+                                        <code class="language-javascript" id="pushConnectorChannelEmbedCode"></code>
+                                    </pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

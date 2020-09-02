@@ -1,0 +1,2 @@
+parameters:
+    ezsettings.default.push_config.content_types_map: []

@@ -1,0 +1,124 @@
+{% extends "@ezdesign/ui/layout.html.twig" %}
+{% trans_default_domain 'views' %}
+{% block title %}{{ 'push.view.main_settings'|trans|desc('eZ Platform Push Connector Main Settings') }}{% endblock %}
+{% block content %}
+    <div class="row align-items-stretch ez-main-row">
+        <div class="px-0 ez-content-container">
+            <div class="ez-header">
+                <div class="container">
+                    <ol class="breadcrumb px-4">
+                        <li class="breadcrumb-item" title="{{ 'push__main__menu__item'|trans({},'menu') }}">
+                            {{ 'push__main__menu__item'|trans({},'menu') }}
+                        </li>
+                        <li class="breadcrumb-item" title="{{ 'push__delivery__channel'|trans({},'menu') }}">
+                            {{ 'push__delivery__channel'|trans({},'menu') }}
+                        </li>
+                    </ol>
+                    <div class="ez-page-title py-3 px-4">
+                        <h1 class="ez-page-title__content-item">
+                            <svg class="ez-icon ez-icon-languages">
+                                <use xlink:href="/bundles/ezplatformadminui/img/ez-icons.svg#languages"></use>
+                            </svg>
+                            <span class="ez-page-title__content-name">
+                                {{ 'push__delivery__channel'|trans({},'menu') }}
+                            </span>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid ez-main-container container mt-4 px-5">
+                {% if access_denied is defined %}
+                    {{ 'push.view.access_denied'|trans|desc('You are not allowed to access this view. Please contact the website administrator') }}
+                {% else %}
+                    {% for message in app.flashes('success') %}
+                        <div class="alert alert-success">
+                            <a class="close" data-dismiss="alert" href="#">&times;</a>
+                            <ul>
+                                <li>
+                                    {{ message }}
+                                </li>
+                            </ul>
+                        </div>
+                    {% endfor %}
+
+                    {% for message in app.flashes('error') %}
+                        <div class="alert alert-danger">
+                            <a class="close" data-dismiss="alert" href="#">&times;</a>
+                            <ul>
+                                <li>
+                                    {{ message }}
+                                </li>
+                            </ul>
+                        </div>
+                    {% endfor %}
+
+                    <section class="container mt-4 px-5">
+                        {{ form_start(deleteForm, {'method': 'DELETE'}) }}
+                            <div class="ez-table-header">
+                                <div class="ez-table-header__headline">
+                                    {{ 'push__delivery__channel'|trans({},'menu') }}
+                                </div>
+                                <div>
+                                    <a title="{{ 'push_delivery_create_channel'|trans({},'forms') }}"
+                                       href="{{ path('ezplatform.push.channel.create') }}" class="btn btn-primary">
+                                        <svg class="ez-icon ez-icon-create">
+                                            <use xlink:href="/bundles/ezplatformadminui/img/ez-icons.svg#create"></use>
+                                        </svg>
+                                    </a>
+                                    <button id="delete-roles" type="submit" class="btn btn-danger" data-toggle="modal"
+                                            data-target="#delete-sections-modal"
+                                            title="{{ 'push_delivery_delete_channel'|trans({},'forms') }}">
+                                        <svg class="ez-icon ez-icon-trash">
+                                            <use xlink:href="/bundles/ezplatformadminui/img/ez-icons.svg#trash"></use>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <table class="ez-table table mb-3">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>{{ 'push_delivery_id'|trans({},'forms') }}</th>
+                                        <th>{{ 'push_delivery_name'|trans({},'forms') }}</th>
+                                        <th>{{ 'push_delivery_platform'|trans({},'forms') }}</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="pushConnectorChannelsTableBody">
+                                    {% for channel in channels %}
+                                        <tr>
+                                            <td class="ez-table__cell ez-table__cell--has-checkbox">
+                                                <div class="form-check">
+                                                    <input type="checkbox"  name="id[]" class="form-check-input"
+                                                           value="{{ channel.id }}"/>
+                                                </div>
+                                            </td>
+                                            <td class="ez-table__cell">{{ channel.id }}</td>
+                                            <td class="ez-table__cell">{{ channel.appName }}</td>
+                                            <td class="ez-table__cell">{{ channel.platformName }}</td>
+                                            <td class="ez-table__cell ez-table__cell--has-action-btns text-right">
+                                                <a title="{{ 'push_delivery_edit_channel'|trans({},'forms') }}"
+                                                   href="{{ path('ezplatform.push.channel.edit', { 'id': channel.id }) }}"
+                                                   class="btn btn-icon mx-2">
+                                                    <svg class="ez-icon ez-icon-edit">
+                                                        <use xlink:href="/bundles/ezplatformadminui/img/ez-icons.svg#edit"></use>
+                                                    </svg>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        {{ form_end(deleteForm) }}
+                    </section>
+                    <div class="display-results">
+                        <div class="display-results col-md-6">
+                            <div class="form-group ">
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

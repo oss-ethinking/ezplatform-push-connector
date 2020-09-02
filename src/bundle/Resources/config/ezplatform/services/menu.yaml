@@ -1,0 +1,8 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    Ethinking\PushConnector\EzPlatform\UI\Menu\EventSubscriber\:
+        resource: '../../../../../lib/EzPlatform/UI/Menu/EventSubscriber/*'

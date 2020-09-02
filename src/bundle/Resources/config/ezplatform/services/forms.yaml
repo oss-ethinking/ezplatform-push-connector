@@ -1,0 +1,9 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: false
+        public: false
+
+    Ethinking\PushConnectorBundle\Entity\MainSettings: ~
+
+    Ethinking\PushConnector\EzPlatform\Repository\Form\Factory\FormFactory: ~

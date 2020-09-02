@@ -1,0 +1,9 @@
+channel:
+    provider:
+        error: "Push Connector: The channel provider '%channel%' is not available"
+content:
+    field:
+        unsupported: "Push Connector: '%content_type_identifier%' content field type '%field%' for '%identifier%' is not supported"
+push:
+    share:
+        success: "Content '%contentName%' is shared via push connector"

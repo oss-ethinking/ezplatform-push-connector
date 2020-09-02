@@ -1,0 +1,89 @@
+{% extends "@ezdesign/ui/layout.html.twig" %}
+{% block title %}{{ 'push.view.main_settings'|trans|desc('eZ Platform Push Connector Main Settings') }}{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('ezplatform-push-connector-archive-js', null, 'ezplatform') }}
+{% endblock %}
+{% block content %}
+    <div class="row align-items-stretch ez-main-row">
+        <div class="px-0 ez-content-container">
+            <div class="ez-header">
+                <div class="container">
+                    <ol class="breadcrumb px-4">
+                        <li class="breadcrumb-item" title="{{ 'push__main__menu__item'|trans({},'menu') }}">
+                            {{ 'push__main__menu__item'|trans({},'menu') }}
+                        </li>
+                        <li class="breadcrumb-item" title="{{ 'push__delivery__archive'|trans({},'menu') }}">
+                            {{ 'push__delivery__archive'|trans({},'menu') }}
+                        </li>
+                    </ol>
+                    <div class="ez-page-title py-3 px-4">
+                        <h1 class="ez-page-title__content-item">
+                            <svg class="ez-icon ez-icon-languages">
+                                <use xlink:href="/bundles/ezplatformadminui/img/ez-icons.svg#languages"></use>
+                            </svg>
+                            <span class="ez-page-title__content-name">
+                                {{ 'push_delivery_archive'|trans({},'forms') }}
+                            </span>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid ez-main-container container mt-4 px-5">
+                {% if access_denied is defined %}
+                    {{ 'push.view.access_denied'|trans|desc('You are not allowed to access this view. Please contact the website administrator') }}
+                {% else %}
+                    <section class="container mt-4 px-5">
+                        <div class="ez-table-header">
+                            <div class="ez-table-header__headline">{{ 'push_delivery_archive'|trans({},'forms') }}</div>
+                        </div>
+                        <table class="ez-table table mb-3">
+                            <thead>
+                                <tr>
+                                    <th>{{ 'push_delivery_username'|trans({},'forms') }}</th>
+                                    <th>{{ 'push_delivery_time'|trans({},'forms') }}</th>
+                                    <th> </th>
+                                </tr>
+                            </thead>
+                            <tbody id="pushConnectorArchiveTableBody">
+                                {% for item in history %}
+                                    <tr>
+                                        <td class="ez-table__cell">{{ item.userName }}</td>
+                                        <td class="ez-table__cell">{{ item.time }}</td>
+                                        <td class="ez-table__cell ez-table__cell--has-action-btns text-right">
+                                            <a title="{{ 'push_delivery_details'|trans({},'forms') }}" href="#"
+                                               class="btn btn-icon mx-2 status-link" data-id="{{ item.id }}"
+                                               data-toggle="modal" data-target="#pushStatusDetailModal">
+                                                <svg class="ez-icon ez-icon-search">
+                                                    <use xlink:href="/bundles/ezplatformadminui/img/ez-icons.svg#search"></use>
+                                                </svg>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </section>
+                    <!-- Modal -->
+                    <div class="modal fade" id="pushStatusDetailModal" tabindex="-1" role="dialog"
+                         aria-labelledby="statusModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="pushStatusDetailModalLabel">Details</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body push-delivery-modal-body"></div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

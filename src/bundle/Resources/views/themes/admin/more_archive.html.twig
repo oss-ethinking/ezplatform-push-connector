@@ -1,0 +1,17 @@
+{% for item in history %}
+    <tr>
+        <td class="ez-table__cell">{{ item.userName }}</td>
+        <td class="ez-table__cell">{{ item.time }}</td>
+        <td class="ez-table__cell ez-table__cell--has-action-btns text-right">
+            <a title="{{ 'push_delivery_details'|trans({},'forms') }}"
+               href="#"
+               class="btn btn-icon mx-2 status-link"
+               data-toggle="modal"
+               data-target="#pushStatusDetailModal">
+                <svg class="ez-icon ez-icon-search">
+                    <use xlink:href="/bundles/ezplatformadminui/img/ez-icons.svg#search"></use>
+                </svg>
+            </a>
+        </td>
+    </tr>
+{% endfor %}

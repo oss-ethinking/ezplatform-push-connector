@@ -1,0 +1,6 @@
+push__main__menu__item: 'Push'
+push__general__settings__item: 'Main settings'
+push__delivery__channel: 'Channel'
+push__delivery__archive: 'Archive'
+push__content__sidebar__right__menu__item: 'Push'
+push.content.view.menu.item: 'Push Info'

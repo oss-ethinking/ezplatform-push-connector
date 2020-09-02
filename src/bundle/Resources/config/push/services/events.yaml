@@ -1,0 +1,8 @@
+services:
+    _defaults:
+        autoconfigure: true
+        autowire: true
+        public: false
+
+    Ethinking\PushConnector\Connector\Channels\EventSubscriber\:
+        resource: '../../../../../lib/Connector/Channels/EventSubscriber/*'

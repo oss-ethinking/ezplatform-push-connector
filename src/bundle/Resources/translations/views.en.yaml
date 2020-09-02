@@ -1,0 +1,6 @@
+push:
+    view:
+        main_settings: 'eZ Platform Push Connector Main Settings'
+        access_denied: 'You are not allowed to access this view. Please contact the website administrator'
+
+required: '* Required'

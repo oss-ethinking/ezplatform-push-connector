@@ -1,0 +1,6 @@
+services:
+
+    Ethinking\PushConnector\EzPlatform\UI\Menu\EventSubscriber\PushContentViewTabSubscriber:
+        parent: EzSystems\EzPlatformAdminUi\Tab\AbstractTab
+        tags:
+            - { name: ezplatform.tab, group: location-view }

@@ -1,0 +1,18 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: false
+        public: false
+
+    #Global to check permission in e.g Controller
+    Ethinking\PushConnector\EzPlatform\UI\Permission\PermissionChecker: ~
+
+    Ethinking\PushConnectorBundle\Repository\MainSettingsRepository:
+        arguments:
+            - '@doctrine'
+
+    Ethinking\PushConnectorBundle\Service\PushApiService:
+        arguments:
+            - '@Symfony\Contracts\HttpClient\HttpClientInterface'
+            - '@Ethinking\PushConnectorBundle\Repository\MainSettingsRepository'
+            - '@logger'
