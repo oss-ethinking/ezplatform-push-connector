@@ -1,58 +1,39 @@
-# eZPlatform Push Connector
+# EzPlatform Push Connector
 
-## Requirement 
+Service which makes it possible to send Push Notifications via various channels to many subscribers and in high speed
 
-eZ Platform 3.x +
+## Installation
 
-## Installation 
+The easiest and recommended way to install this utility is as a composer package:
 
-Now manually as we don't have an automatic installation process
-
-### The bundle
-
-add the bundle next to your installation
-
-### Route
-
-add following file route configuration in `htdocs/config/routes/ezplatform_push_connector.yaml`
-
+```php
+composer require ethinking/ezplatform-push-connector
 ```
+
+## Usage
+Create ezplatform_push_connector.yaml in the config/routes/ with the next code:
+```yaml
 ezplatform_push_connector:
-    resource: "@EthinkingEzPlatformPushConnectorBundle/Resources/config/routing.yaml"
-    prefix:   /
-```
-
-### Bundle declaration
-
-This could be added in `config/bundles.php`
-
-```
-    Ethinking\PushConnectorBundle\EthinkingEzPlatformPushConnectorBundle::class => ['all' => true],
-```
-
-### Composer
-
-you can have the bundle everywhere in the installation but you should consider to add two paths in `composer.json`
-
-```
-    "Ethinking\\PushConnectorBundle\\": "../ethinking/ezplatform-push-connector/src/bundle",
-    "Ethinking\\PushConnector\\": "../ethinking/ezplatform-push-connector/src/lib"
-```
-The above entries should be added in the `autoload` section.
-
-
-### Cahe and autoload
-
-regenerate autoload with
-
-```
-composer dump-autoload
+  resource: "@EzPlatformPushConnectorBundle/Resources/config/routing.yaml"
+  prefix:   /
 ```
 
 Clear cache
-
-```
+```php
 php bin/console c:c
 ```
 
+## Dependencies
 
+```json
+{
+    "symfony/dependency-injection": "^5.0",
+    "symfony/http-kernel": "^5.0",
+    "symfony/http-foundation": "^4.4|^5.0",
+    "symfony/http-client": "^4.3|^5.0",
+    "symfony/http-client-contracts": "^1.1.8|^2",
+    "symfony/validator": "^3.4.30|^4.3.3|^5.0",
+    "symfony/mime": "^4.3|^5.0",
+    "ethinking/push-api": "*"
+}
+```
