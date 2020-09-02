@@ -1,6 +1,7 @@
 # EzPlatform Push Connector
 
-Service which makes it possible to send Push Notifications via various channels to many subscribers and in high speed
+The Push Delivery Connector from ethinking GmbH lets you enhance your CMS experience with providing access to new ways of reaching your customers using your created content. It establishes the possibility to send push notifi cations to various platforms from the inside of your CMS.
+The connector will provide its own tabs next to the admin section to let your CMS admin easily set up all necessary connections. Moreover, it is designed to create and alter distribution channels or push templates.
 
 ## Installation
 
