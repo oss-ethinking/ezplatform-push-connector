@@ -18,15 +18,19 @@
     };
 
     const toggleFields = (selectedValue) => {
-        const firebaseFieldSelectors = ['#channel_form_firebaseMessagingSenderId', '#channel_form_firebaseProjectId', '#channel_form_firebaseApiKey', '#channel_form_firebaseAppId', '#channel_form_fallbackUrl', '#channel_form_serviceWorkerPath'];
+        const firebaseFieldSelectors = ['#channel_form_firebaseMessagingSenderId', '#channel_form_firebaseProjectId', '#channel_form_firebaseApiKey', '#channel_form_firebaseAppId', '#channel_form_fallbackUrl'];
         if (selectedValue == 7) {
             firebaseFieldSelectors.forEach((firebaseFieldSelector) => {
                 show(doc.querySelector(firebaseFieldSelector).closest("div"));
             });
+
+            show(doc.querySelector('#channel_form_serviceWorkerPath'));
         } else {
             firebaseFieldSelectors.forEach((firebaseFieldSelector) => {
                 hide(doc.querySelector(firebaseFieldSelector).closest("div"));
             });
+
+            hide(doc.querySelector('#channel_form_serviceWorkerPath'));
         }
     };
     const show = (element) => {
