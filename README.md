@@ -8,7 +8,8 @@ The connector will provide its own tabs next to the admin section to let your CM
 The easiest and recommended way to install this utility is as a composer package:
 
 ```php
-composer require ethinking/ezplatform-push-connector
+composer require ethinking/push-api dev-master
+composer require ethinking/ezplatform-push-connector dev-master
 ```
 
 ## Usage
@@ -19,10 +20,19 @@ ezplatform_push_connector:
   prefix:   /
 ```
 
+Update assets
+```php
+yarn encore dev
+```
+
 Clear cache
 ```php
 php bin/console c:c
 ```
+
+if you're getting an error about missing dependencies in the entrypoints.json,
+try to delete manually "public/assets/ezplatform" directory and update
+assets again
 
 ## Dependencies
 
@@ -35,6 +45,6 @@ php bin/console c:c
     "symfony/http-client-contracts": "^1.1.8|^2",
     "symfony/validator": "^3.4.30|^4.3.3|^5.0",
     "symfony/mime": "^4.3|^5.0",
-    "ethinking/push-api": "*"
+    "ethinking/push-api": "dev-master"
 }
 ```
