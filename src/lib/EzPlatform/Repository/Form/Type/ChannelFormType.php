@@ -44,9 +44,7 @@ class ChannelFormType extends AbstractType
                     ],
                     'choices' => [
                         '- Select -' => '0',
-                        'iOS' => PushApiService::IOS,
-                        'Web Push' => PushApiService::WEB_PUSH,
-                        'Firebase' => PushApiService::FIREBASE_ANDROID
+                        'Web Push' => PushApiService::WEB_PUSH
                     ]
                 ]
             )
