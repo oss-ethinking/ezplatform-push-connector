@@ -1,18 +1,18 @@
 <?php
 
-namespace EzPlatform\PushConnector\EzPlatform\Repository\Form\Factory;
+namespace Ethinking\PushConnector\EzPlatform\Repository\Form\Factory;
 
 use Ethinking\EthinkingPushApiBundle\Entity\Channel;
-use EzPlatform\PushConnector\EzPlatform\Repository\Form\Type\ChannelFormType;
-use EzPlatform\PushConnector\EzPlatform\Repository\Form\Type\MainSettingsFormType;
-use EzPlatform\PushConnectorBundle\Entity\MainSettings;
+use Ethinking\PushConnector\EzPlatform\Repository\Form\Type\ChannelFormType;
+use Ethinking\PushConnector\EzPlatform\Repository\Form\Type\MainSettingsFormType;
+use Ethinking\PushConnectorBundle\Entity\MainSettings;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\Util\StringUtil;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * @package EzPlatform\PushConnector\EzPlatform\Repository\Form\Factory
+ * @package Ethinking\PushConnector\EzPlatform\Repository\Form\Factory
  */
 class FormFactory
 {

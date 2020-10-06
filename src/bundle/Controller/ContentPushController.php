@@ -1,14 +1,14 @@
 <?php
 
-namespace EzPlatform\PushConnectorBundle\Controller;
+namespace Ethinking\PushConnectorBundle\Controller;
 
 use eZ\Publish\API\Repository\Exceptions\InvalidArgumentException;
 use eZ\Publish\API\Repository\Exceptions\NotFoundException;
 use eZ\Publish\API\Repository\Exceptions\UnauthorizedException;
 use eZ\Publish\API\Repository\LocationService;
-use EzPlatform\PushConnector\Connector\Services\ContentMapperService;
-use EzPlatform\PushConnector\Connector\Services\ContentPushService;
-use EzPlatform\PushConnector\EzPlatform\UI\Permission\PermissionChecker;
+use Ethinking\PushConnector\Connector\Services\ContentMapperService;
+use Ethinking\PushConnector\Connector\Services\ContentPushService;
+use Ethinking\PushConnector\EzPlatform\UI\Permission\PermissionChecker;
 use EzSystems\EzPlatformAdminUi\Notification\TranslatableNotificationHandlerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,7 +18,7 @@ use eZ\Publish\API\Repository\URLAliasService;
 
 /**
  * Class ContentPushController
- * @package EzPlatform\PushConnectorBundle\Controller
+ * @package Ethinking\PushConnectorBundle\Controller
  */
 class ContentPushController extends Controller
 {

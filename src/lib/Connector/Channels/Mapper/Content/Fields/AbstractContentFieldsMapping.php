@@ -2,28 +2,28 @@
 
 declare(strict_types=1);
 
-namespace EzPlatform\PushConnector\Connector\Channels\Mapper\Content\Fields;
+namespace Ethinking\PushConnector\Connector\Channels\Mapper\Content\Fields;
 
 use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\Values\Content\Content;
-use EzPlatform\PushConnector\Connector\Channels\Mapper\Content\Fields\Helper\ImageAssetMapper;
+use Ethinking\PushConnector\Connector\Channels\Mapper\Content\Fields\Helper\ImageAssetMapper;
 
 /**
  * Class AbstractContentFieldsMapping
- * @package EzPlatform\PushConnector\Connector\Channels\Mapper\Content\Fields
+ * @package Ethinking\PushConnector\Connector\Channels\Mapper\Content\Fields
  */
 abstract class AbstractContentFieldsMapping implements ContentFieldsMapperInterface
 {
     /** @var \eZ\Publish\API\Repository\ContentService */
     private $contentService;
 
-    /** @var \EzPlatform\PushConnector\Connector\Channels\Mapper\Content\Fields\Helper\ImageAssetMapper */
+    /** @var \Ethinking\PushConnector\Connector\Channels\Mapper\Content\Fields\Helper\ImageAssetMapper */
     protected $imageAssetMapper;
 
     /**
      * AbstractContentFieldsMapping constructor.
      * @param \eZ\Publish\API\Repository\ContentService $contentService
-     * @param \EzPlatform\PushConnector\Connector\Channels\Mapper\Content\Fields\Helper\ImageAssetMapper $imageAssetMapper
+     * @param \Ethinking\PushConnector\Connector\Channels\Mapper\Content\Fields\Helper\ImageAssetMapper $imageAssetMapper
      */
     public function __construct(
         ContentService $contentService,

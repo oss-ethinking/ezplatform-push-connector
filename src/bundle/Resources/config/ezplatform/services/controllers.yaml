@@ -1,8 +1,8 @@
 services:
-    EzPlatform\PushConnectorBundle\Controller\Controller:
+    Ethinking\PushConnectorBundle\Controller\Controller:
         parent: EzSystems\EzPlatformAdminUiBundle\Controller\Controller
 
-    EzPlatform\PushConnectorBundle\Controller\:
+    Ethinking\PushConnectorBundle\Controller\:
         autowire: true
         public: true
         resource: '../../Controller/*'

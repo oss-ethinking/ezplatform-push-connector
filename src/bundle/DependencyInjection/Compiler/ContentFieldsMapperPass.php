@@ -1,10 +1,10 @@
 <?php
 
-namespace EzPlatform\PushConnectorBundle\DependencyInjection\Compiler;
+namespace Ethinking\PushConnectorBundle\DependencyInjection\Compiler;
 
-use EzPlatform\PushConnector\Connector\Channels\Mapper\Content\Fields\ContentFieldsMapperInterface;
-use EzPlatform\PushConnector\Connector\Channels\Provider\PushConnectorChannelsInterface;
-use EzPlatform\PushConnector\Connector\Channels\Registry\ContentFieldsMapperRegistry;
+use Ethinking\PushConnector\Connector\Channels\Mapper\Content\Fields\ContentFieldsMapperInterface;
+use Ethinking\PushConnector\Connector\Channels\Provider\PushConnectorChannelsInterface;
+use Ethinking\PushConnector\Connector\Channels\Registry\ContentFieldsMapperRegistry;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;

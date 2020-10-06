@@ -1,18 +1,18 @@
 <?php
 
-namespace EzPlatform\PushConnectorBundle\Controller;
+namespace Ethinking\PushConnectorBundle\Controller;
 
 use Ethinking\EthinkingPushApiBundle\Entity\Channel;
 use Ethinking\EthinkingPushApiBundle\Service\PushApiInstance;
-use EzPlatform\PushConnector\EzPlatform\Repository\Form\Factory\FormFactory;
-use EzPlatform\PushConnectorBundle\Service\PushService;
+use Ethinking\PushConnector\EzPlatform\Repository\Form\Factory\FormFactory;
+use Ethinking\PushConnectorBundle\Service\PushService;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class ChannelController
- * @package EzPlatform\PushConnectorBundle\Controller
+ * @package Ethinking\PushConnectorBundle\Controller
  */
 class ChannelController extends Controller
 {

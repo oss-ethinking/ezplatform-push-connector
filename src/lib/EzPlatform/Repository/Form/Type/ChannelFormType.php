@@ -1,6 +1,6 @@
 <?php
 
-namespace EzPlatform\PushConnector\EzPlatform\Repository\Form\Type;
+namespace Ethinking\PushConnector\EzPlatform\Repository\Form\Type;
 
 use Ethinking\EthinkingPushApiBundle\Entity\Channel;
 use Ethinking\EthinkingPushApiBundle\Service\PushApiService;

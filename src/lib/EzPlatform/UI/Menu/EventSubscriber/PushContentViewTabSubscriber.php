@@ -1,10 +1,10 @@
 <?php
 
-namespace EzPlatform\PushConnector\EzPlatform\UI\Menu\EventSubscriber;
+namespace Ethinking\PushConnector\EzPlatform\UI\Menu\EventSubscriber;
 
 use eZ\Publish\API\Repository\PermissionResolver;
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
-use EzPlatform\PushConnector\Connector\Services\ConfigurationDefinitionService;
+use Ethinking\PushConnector\Connector\Services\ConfigurationDefinitionService;
 use EzSystems\EzPlatformAdminUi\Specification\ContentType\ContentTypeIsUser;
 use EzSystems\EzPlatformAdminUi\Tab\AbstractEventDispatchingTab;
 use EzSystems\EzPlatformAdminUi\Tab\ConditionalTabInterface;
@@ -23,7 +23,7 @@ class PushContentViewTabSubscriber extends AbstractEventDispatchingTab implement
     /** @var \eZ\Publish\Core\MVC\ConfigResolverInterface */
     private $configResolver;
     /**
-     * @var \EzPlatform\PushConnector\Connector\Services\ConfigurationDefinitionService
+     * @var \Ethinking\PushConnector\Connector\Services\ConfigurationDefinitionService
      */
     private $configurationDefinitionService;
 

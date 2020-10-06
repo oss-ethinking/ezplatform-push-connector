@@ -1,10 +1,10 @@
 <?php
 
-namespace EzPlatform\PushConnectorBundle\Templating\Twig\Extension;
+namespace Ethinking\PushConnectorBundle\Templating\Twig\Extension;
 
 use Ethinking\EthinkingPushApiBundle\Entity\Channel;
 use Ethinking\EthinkingPushApiBundle\Service\PushApiInstance;
-use EzPlatform\PushConnectorBundle\Service\PushService;
+use Ethinking\PushConnectorBundle\Service\PushService;
 use Ethinking\EthinkingPushApiBundle\Service\PushApiService;
 use Twig\TwigFunction;
 use Twig\Environment;

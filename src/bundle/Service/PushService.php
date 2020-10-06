@@ -1,16 +1,16 @@
 <?php
 
-namespace EzPlatform\PushConnectorBundle\Service;
+namespace Ethinking\PushConnectorBundle\Service;
 
 use Ethinking\EthinkingPushApiBundle\Service\PushApiInstance;
 use Ethinking\EthinkingPushApiBundle\Service\PushApiService;
 use Ethinking\EthinkingPushApiBundle\Entity\Settings;
-use EzPlatform\PushConnectorBundle\Entity\MainSettings;
-use EzPlatform\PushConnectorBundle\Repository\MainSettingsRepository;
+use Ethinking\PushConnectorBundle\Entity\MainSettings;
+use Ethinking\PushConnectorBundle\Repository\MainSettingsRepository;
 
 /**
  * Class PushService
- * @package EzPlatform\PushConnectorBundle\Service
+ * @package Ethinking\PushConnectorBundle\Service
  */
 class PushService
 {

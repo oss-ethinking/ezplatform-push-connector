@@ -5,9 +5,9 @@ services:
         public: false
 
     #Global to check permission in e.g Controller
-    EzPlatform\PushConnector\EzPlatform\UI\Permission\PermissionChecker: ~
+    Ethinking\PushConnector\EzPlatform\UI\Permission\PermissionChecker: ~
 
-    EzPlatform\PushConnectorBundle\Repository\MainSettingsRepository:
+    Ethinking\PushConnectorBundle\Repository\MainSettingsRepository:
         arguments:
             - '@doctrine'
 
@@ -16,7 +16,7 @@ services:
             - '@Symfony\Contracts\HttpClient\HttpClientInterface'
             - '@logger'
 
-    EzPlatform\PushConnectorBundle\Service\PushService:
+    Ethinking\PushConnectorBundle\Service\PushService:
         arguments:
             - '@Ethinking\EthinkingPushApiBundle\Service\PushApiService'
-            - '@EzPlatform\PushConnectorBundle\Repository\MainSettingsRepository'
+            - '@Ethinking\PushConnectorBundle\Repository\MainSettingsRepository'

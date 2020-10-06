@@ -1,9 +1,9 @@
 <?php
 
-namespace EzPlatform\PushConnector\Connector\Channels\Provider;
+namespace Ethinking\PushConnector\Connector\Channels\Provider;
 
 use Ethinking\EthinkingPushApiBundle\Service\PushApiInstance;
-use EzPlatform\PushConnectorBundle\Service\PushService;
+use Ethinking\PushConnectorBundle\Service\PushService;
 use Psr\Log\LoggerInterface;
 
 class WebpushChannel extends AbstractPushConnectorChannel

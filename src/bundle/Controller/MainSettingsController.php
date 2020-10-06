@@ -1,13 +1,13 @@
 <?php
 
-namespace EzPlatform\PushConnectorBundle\Controller;
+namespace Ethinking\PushConnectorBundle\Controller;
 
 use Ethinking\EthinkingPushApiBundle\Service\PushApiInstance;
-use EzPlatform\PushConnector\EzPlatform\Repository\Form\Factory\FormFactory;
-use EzPlatform\PushConnectorBundle\Entity\MainSettings;
-use EzPlatform\PushConnectorBundle\Repository\MainSettingsRepository;
-use EzPlatform\PushConnector\EzPlatform\UI\Permission\PermissionChecker;
-use EzPlatform\PushConnectorBundle\Service\PushService;
+use Ethinking\PushConnector\EzPlatform\Repository\Form\Factory\FormFactory;
+use Ethinking\PushConnectorBundle\Entity\MainSettings;
+use Ethinking\PushConnectorBundle\Repository\MainSettingsRepository;
+use Ethinking\PushConnector\EzPlatform\UI\Permission\PermissionChecker;
+use Ethinking\PushConnectorBundle\Service\PushService;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,7 +17,7 @@ use \DateTime;
 
 /**
  * Class MainSettingsController
- * @package EzPlatform\PushConnectorBundle\Controller
+ * @package Ethinking\PushConnectorBundle\Controller
  */
 class MainSettingsController extends Controller
 {

@@ -1,50 +1,50 @@
 #test to get bundle up and running for first setups
 ezplatform_push_connector_homepage:
     path:     /push_connector
-    controller: EzPlatform\PushConnectorBundle\Controller\DefaultController::indexAction
+    controller: Ethinking\PushConnectorBundle\Controller\DefaultController::indexAction
 
 ezplatform.push.main_settings.view:
     path:     /push/mainsettings
-    controller: EzPlatform\PushConnectorBundle\Controller\MainSettingsController::mainAction
+    controller: Ethinking\PushConnectorBundle\Controller\MainSettingsController::mainAction
 
 ezplatform.push.channel.view:
     path:     /push/channel
-    controller: EzPlatform\PushConnectorBundle\Controller\ChannelController::indexAction
+    controller: Ethinking\PushConnectorBundle\Controller\ChannelController::indexAction
 
 ezplatform.push.channel.create:
     path:     /push/channel/create
-    controller: EzPlatform\PushConnectorBundle\Controller\ChannelController::createAction
+    controller: Ethinking\PushConnectorBundle\Controller\ChannelController::createAction
     methods:  [GET, POST]
 
 ezplatform.push.channel.edit:
     path:     /push/channel/{id}/update
-    controller: EzPlatform\PushConnectorBundle\Controller\ChannelController::updateAction
+    controller: Ethinking\PushConnectorBundle\Controller\ChannelController::updateAction
     methods:  [GET, PUT]
 
 ezplatform.push.channel.delete:
     path:     /push/channel/delete
-    controller: EzPlatform\PushConnectorBundle\Controller\ChannelController::deleteAction
+    controller: Ethinking\PushConnectorBundle\Controller\ChannelController::deleteAction
     methods:  [DELETE]
 
 ezplatform.push.channel.embedCode.generate:
     path:     /push/channel/{id}/embedCode/generate
-    controller: EzPlatform\PushConnectorBundle\Controller\ChannelController::generateEmbedCode
+    controller: Ethinking\PushConnectorBundle\Controller\ChannelController::generateEmbedCode
     options:
         expose: true
 
 ezplatform.push.archive.view:
     path:     /push/archive
-    controller: EzPlatform\PushConnectorBundle\Controller\ArchiveController::indexAction
+    controller: Ethinking\PushConnectorBundle\Controller\ArchiveController::indexAction
 
 ezplatform.push.archive.details:
     path:     /push/archive/details/{id}
-    controller: EzPlatform\PushConnectorBundle\Controller\ArchiveController::detailsAction
+    controller: Ethinking\PushConnectorBundle\Controller\ArchiveController::detailsAction
     options:
         expose: true
 
 ezplatform.push.archive.more:
     path:     /push/archive/more/{page}
-    controller: EzPlatform\PushConnectorBundle\Controller\ArchiveController::moreArchiveAction
+    controller: Ethinking\PushConnectorBundle\Controller\ArchiveController::moreArchiveAction
     options:
         expose: true
 
@@ -54,4 +54,4 @@ ezplatform.push_content:
     methods: GET
     requirements:
         locationId: '\d+'
-    controller: EzPlatform\PushConnectorBundle\Controller\ContentPushController:pushContentAction
+    controller: Ethinking\PushConnectorBundle\Controller\ContentPushController:pushContentAction

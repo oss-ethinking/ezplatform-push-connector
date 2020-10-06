@@ -1,6 +1,6 @@
 <?php
 
-namespace EzPlatform\PushConnector\Connector\Channels\Provider;
+namespace Ethinking\PushConnector\Connector\Channels\Provider;
 
 abstract class AbstractPushConnectorChannel implements PushConnectorChannelsInterface
 {

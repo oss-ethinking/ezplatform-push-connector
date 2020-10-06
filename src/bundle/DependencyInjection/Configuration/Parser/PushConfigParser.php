@@ -1,6 +1,6 @@
 <?php
 
-namespace EzPlatform\PushConnectorBundle\DependencyInjection\Configuration\Parser;
+namespace Ethinking\PushConnectorBundle\DependencyInjection\Configuration\Parser;
 
 use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\AbstractParser;
 use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\SiteAccessAware\ContextualizerInterface;

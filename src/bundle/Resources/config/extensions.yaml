@@ -4,4 +4,4 @@ services:
         autowire: true
         public: false
 
-    EzPlatform\PushConnectorBundle\Templating\Twig\Extension\EmbedCodeExtension: ~
+    Ethinking\PushConnectorBundle\Templating\Twig\Extension\EmbedCodeExtension: ~

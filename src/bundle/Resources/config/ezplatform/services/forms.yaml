@@ -4,6 +4,6 @@ services:
         autoconfigure: false
         public: false
 
-    EzPlatform\PushConnectorBundle\Entity\MainSettings: ~
+    Ethinking\PushConnectorBundle\Entity\MainSettings: ~
 
-    EzPlatform\PushConnector\EzPlatform\Repository\Form\Factory\FormFactory: ~
+    Ethinking\PushConnector\EzPlatform\Repository\Form\Factory\FormFactory: ~

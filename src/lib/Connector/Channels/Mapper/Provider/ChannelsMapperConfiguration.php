@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace EzPlatform\PushConnector\Connector\Channels\Mapper\Provider;
+namespace Ethinking\PushConnector\Connector\Channels\Mapper\Provider;
 
 use Generator;
 
 /**
  * Class ChannelsMapperConfiguration
- * @package EzPlatform\PushConnector\Connector\Channels\Mapper\Provider
+ * @package Ethinking\PushConnector\Connector\Channels\Mapper\Provider
  */
 class ChannelsMapperConfiguration extends AbstractChannelsMapperConfiguration
 {

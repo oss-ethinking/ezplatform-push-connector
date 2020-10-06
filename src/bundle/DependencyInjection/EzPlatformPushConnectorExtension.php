@@ -1,6 +1,6 @@
 <?php
 
-namespace EzPlatform\PushConnectorBundle\DependencyInjection;
+namespace Ethinking\PushConnectorBundle\DependencyInjection;
 
 use Symfony\Component\Config\Loader\DelegatingLoader;
 use Symfony\Component\Config\Loader\LoaderResolver;

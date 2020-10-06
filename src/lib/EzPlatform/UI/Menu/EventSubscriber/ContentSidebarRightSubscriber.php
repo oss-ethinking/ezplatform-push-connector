@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace EzPlatform\PushConnector\EzPlatform\UI\Menu\EventSubscriber;
+namespace Ethinking\PushConnector\EzPlatform\UI\Menu\EventSubscriber;
 
 use Ethinking\EthinkingPushApiBundle\Service\PushApiInstance;
 use eZ\Publish\API\Repository\Exceptions\InvalidArgumentException;
 use eZ\Publish\API\Repository\PermissionResolver;
-use EzPlatform\PushConnector\Connector\Services\ConfigurationDefinitionService;
-use EzPlatform\PushConnectorBundle\Service\PushService;
+use Ethinking\PushConnector\Connector\Services\ConfigurationDefinitionService;
+use Ethinking\PushConnectorBundle\Service\PushService;
 use EzSystems\EzPlatformAdminUi\Menu\Event\ConfigureMenuEvent;
 use JMS\TranslationBundle\Model\Message;
 use JMS\TranslationBundle\Translation\TranslationContainerInterface;
@@ -16,7 +16,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
  * Class ContentSidebarRightSubscriber
- * @package EzPlatform\PushConnector\EzPlatform\UI\Menu\EventSubscriber
+ * @package Ethinking\PushConnector\EzPlatform\UI\Menu\EventSubscriber
  */
 final class ContentSidebarRightSubscriber implements EventSubscriberInterface, TranslationContainerInterface
 {

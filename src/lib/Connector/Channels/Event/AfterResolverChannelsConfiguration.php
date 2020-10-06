@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace EzPlatform\PushConnector\Connector\Channels\Event;
+namespace Ethinking\PushConnector\Connector\Channels\Event;
 
 use Symfony\Contracts\EventDispatcher\Event;
 
 /**
  * Class AfterResolverChannelsConfiguration
- * @package EzPlatform\PushConnector\Connector\Channels\Event
+ * @package Ethinking\PushConnector\Connector\Channels\Event
  */
 class AfterResolverChannelsConfiguration extends Event
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace EzPlatform\PushConnectorBundle\Exceptions;
+namespace Ethinking\PushConnectorBundle\Exceptions;
 
 use Exception;
 

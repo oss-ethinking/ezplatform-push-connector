@@ -1,12 +1,12 @@
 <?php
 
-namespace EzPlatform\PushConnector\Connector\Channels\Mapper\Content\Fields;
+namespace Ethinking\PushConnector\Connector\Channels\Mapper\Content\Fields;
 
 use eZ\Publish\API\Repository\Values\Content\Field;
 
 /**
  * Interface ContentFieldsMapperInterface
- * @package EzPlatform\PushConnector\Connector\Channels\Mapper\Content\Fields
+ * @package Ethinking\PushConnector\Connector\Channels\Mapper\Content\Fields
  */
 interface ContentFieldsMapperInterface
 {

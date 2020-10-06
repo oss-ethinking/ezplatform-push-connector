@@ -2,15 +2,15 @@
 
 /** Some experiments first */
 
-namespace EzPlatform\PushConnectorBundle\Controller;
+namespace Ethinking\PushConnectorBundle\Controller;
 
 use Ethinking\EthinkingPushApiBundle\Service\PushApiInstance;
-use EzPlatform\PushConnectorBundle\Service\PushService;
+use Ethinking\PushConnectorBundle\Service\PushService;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class ArchiveController
- * @package EzPlatform\PushConnectorBundle\Controller
+ * @package Ethinking\PushConnectorBundle\Controller
  */
 class ArchiveController extends Controller
 {
