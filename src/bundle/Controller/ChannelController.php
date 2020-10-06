@@ -1,20 +1,18 @@
 <?php
 
-namespace Ethinking\PushConnectorBundle\Controller;
+namespace EzPlatform\PushConnectorBundle\Controller;
 
-use Ethinking\PushConnector\EzPlatform\Repository\Form\Factory\FormFactory;
-use Ethinking\PushConnectorBundle\Entity\Channel;
-use Ethinking\PushConnectorBundle\Service\PushApiService;
+use Ethinking\EthinkingPushApiBundle\Entity\Channel;
+use Ethinking\EthinkingPushApiBundle\Service\PushApiInstance;
+use EzPlatform\PushConnector\EzPlatform\Repository\Form\Factory\FormFactory;
+use EzPlatform\PushConnectorBundle\Service\PushService;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use Symfony\Component\HttpFoundation\ResponseHeaderBag;
-use Symfony\Component\HttpFoundation\File\MimeType\FileinfoMimeTypeGuesser;
 
 /**
  * Class ChannelController
- * @package Ethinking\PushConnectorBundle\Controller
+ * @package EzPlatform\PushConnectorBundle\Controller
  */
 class ChannelController extends Controller
 {
@@ -24,25 +22,18 @@ class ChannelController extends Controller
     private $formFactory;
 
     /**
-     * @var PushApiService
+     * @var PushApiInstance
      */
     private $pushApiService;
 
-    const TRANSLATOR = 'translator';
-    const SUCCESS = 'success';
-    const FORMS = 'forms';
-    const ERROR = 'error';
-    const CHANNEL_VIEW = 'ezplatform.push.channel.view';
-
-
     /**
      * @param FormFactory $formFactory
-     * @param PushApiService $pushApiService
+     * @param PushService $pushService
      */
-    public function __construct(FormFactory $formFactory, PushApiService $pushApiService)
+    public function __construct(FormFactory $formFactory, PushService $pushService)
     {
         $this->formFactory = $formFactory;
-        $this->pushApiService = $pushApiService;
+        $this->pushApiService = $pushService->getPushApiService();
     }
 
     /**
@@ -69,7 +60,7 @@ class ChannelController extends Controller
      */
     public function createAction(Request $request)
     {
-        $translator = $this->get(ChannelController::TRANSLATOR);
+        $translator = $this->get('translator');
         $form = $this->formFactory->saveChannel(
             new Channel(),
             $this->generateUrl('ezplatform.push.channel.create')
@@ -81,10 +72,10 @@ class ChannelController extends Controller
             $hasAdded = $this->pushApiService->addChannelAndDefaultTag($form->getData());
 
             if ($hasAdded) {
-                $this->addFlash(ChannelController::SUCCESS, $translator->trans('push_delivery_channel_creation_success', [], ChannelController::FORMS));
-                return new RedirectResponse($this->generateUrl(ChannelController::CHANNEL_VIEW));
+                $this->addFlash('success', $translator->trans('push_delivery_channel_creation_success', [], 'forms'));
+                return new RedirectResponse($this->generateUrl('ezplatform.push.channel.view'));
             } else {
-                $this->addFlash(ChannelController::ERROR, $translator->trans('push_delivery_creation_failed', [], ChannelController::FORMS));
+                $this->addFlash('error', $translator->trans('push_delivery_creation_failed', [], 'forms'));
                 return new RedirectResponse($this->generateUrl('ezplatform.push.channel.create'));
             }
         }
@@ -92,7 +83,7 @@ class ChannelController extends Controller
         return $this->render('@ezdesign/channel_form.html.twig', [
             'form' => $form->createView(),
             'isNew' => true,
-            'title' => $translator->trans('push_delivery_create_channel', [], ChannelController::FORMS)
+            'title' => $translator->trans('push_delivery_create_channel', [], 'forms')
         ]);
     }
 
@@ -103,11 +94,11 @@ class ChannelController extends Controller
      */
     public function updateAction(Request $request, $id)
     {
-        $translator = $this->get(ChannelController::TRANSLATOR);
+        $translator = $this->get('translator');
         $channel = $this->getChannel($id);
         if (empty($channel)) {
-            $this->addFlash(ChannelController::ERROR, $translator->trans('push_delivery_channel_not_found', [], ChannelController::FORMS));
-            return new RedirectResponse($this->generateUrl(ChannelController::CHANNEL_VIEW));
+            $this->addFlash('error', $translator->trans('push_delivery_channel_not_found', [], 'forms'));
+            return new RedirectResponse($this->generateUrl('ezplatform.push.channel.view'));
         }
 
         $form = $this->formFactory->saveChannel(
@@ -121,10 +112,10 @@ class ChannelController extends Controller
             $hasAdded = $this->pushApiService->updateChannel($form->getData());
 
             if ($hasAdded) {
-                $this->addFlash(ChannelController::SUCCESS, $translator->trans('push_delivery_channel_save_success', [], ChannelController::FORMS));
-                return new RedirectResponse($this->generateUrl(ChannelController::CHANNEL_VIEW));
+                $this->addFlash('success', $translator->trans('push_delivery_channel_save_success', [], 'forms'));
+                return new RedirectResponse($this->generateUrl('ezplatform.push.channel.view'));
             } else {
-                $this->addFlash(ChannelController::ERROR, $translator->trans('push_delivery_update_failed', [], ChannelController::FORMS));
+                $this->addFlash('error', $translator->trans('push_delivery_update_failed', [], 'forms'));
                 return new RedirectResponse($this->generateUrl('ezplatform.push.channel.edit', ['id' => $id]));
             }
         }
@@ -132,7 +123,7 @@ class ChannelController extends Controller
         return $this->render('@ezdesign/channel_form.html.twig', [
             'form' => $form->createView(),
             'isNew' => false,
-            'title' => $translator->trans('push_delivery_edit_channel', [], ChannelController::FORMS)
+            'title' => $translator->trans('push_delivery_edit_channel', [], 'forms')
         ]);
     }
 
@@ -143,31 +134,40 @@ class ChannelController extends Controller
      */
     public function deleteAction(Request $request)
     {
-        $translator = $this->get(ChannelController::TRANSLATOR);
+        $translator = $this->get('translator');
         $ids = $request->get("id");
 
         if (empty($ids) || !is_array($ids)) {
-            return new RedirectResponse($this->generateUrl(ChannelController::CHANNEL_VIEW));
+            return new RedirectResponse($this->generateUrl('ezplatform.push.channel.view'));
         }
 
         foreach ($ids as $id) {
             $this->pushApiService->deleteChannel($id);
         }
 
-        $this->addFlash(ChannelController::SUCCESS, $translator->trans('push_delivery_channel_remove_success', [], ChannelController::FORMS));
-        return new RedirectResponse($this->generateUrl(ChannelController::CHANNEL_VIEW));
+        $this->addFlash('success', $translator->trans('push_delivery_channel_remove_success', [], 'forms'));
+        return new RedirectResponse($this->generateUrl('ezplatform.push.channel.view'));
     }
 
     /**
-     * @param $appId
+     * @param $channelId
      * @return mixed
      */
-    public function generateEmbedCode($id)
+    public function generateEmbedCode($channelId)
     {
-        $channel = $this->getChannel($id);
+        $channel = $this->getChannel($channelId);
         return $this->render('@ezdesign/channel_embed_code.html.twig', [
             'channel' => $channel
         ]);
+    }
+
+    /**
+     * @return RedirectResponse
+     */
+    public function downloadJsLibrary()
+    {
+        $fileUrl = 'https://testcopyfile.s3.eu-central-1.amazonaws.com/test_file.zip';
+        return new RedirectResponse($fileUrl);
     }
 
     /**

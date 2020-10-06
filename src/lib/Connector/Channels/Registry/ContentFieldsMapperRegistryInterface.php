@@ -1,13 +1,13 @@
 <?php
 
-namespace Ethinking\PushConnector\Connector\Channels\Registry;
+namespace EzPlatform\PushConnector\Connector\Channels\Registry;
 
-use Ethinking\PushConnector\Connector\Channels\Mapper\Content\Fields\ContentFieldsMapperInterface;
+use EzPlatform\PushConnector\Connector\Channels\Mapper\Content\Fields\ContentFieldsMapperInterface;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 
 /**
  * Interface ContentFieldsMapperRegistryInterface
- * @package Ethinking\PushConnector\Connector\Channels\Registry
+ * @package EzPlatform\PushConnector\Connector\Channels\Registry
  */
 interface ContentFieldsMapperRegistryInterface
 {

@@ -4,5 +4,5 @@ services:
         autowire: true
         public: false
 
-    Ethinking\PushConnector\Connector\Channels\EventSubscriber\:
+    EzPlatform\PushConnector\Connector\Channels\EventSubscriber\:
         resource: '../../../../../lib/Connector/Channels/EventSubscriber/*'

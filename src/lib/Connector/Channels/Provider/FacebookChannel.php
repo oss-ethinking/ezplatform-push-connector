@@ -1,6 +1,6 @@
 <?php
 
-namespace Ethinking\PushConnector\Connector\Channels\Provider;
+namespace EzPlatform\PushConnector\Connector\Channels\Provider;
 
 class FacebookChannel extends AbstractPushConnectorChannel
 {

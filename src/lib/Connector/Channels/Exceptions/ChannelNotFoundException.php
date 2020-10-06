@@ -1,6 +1,6 @@
 <?php
 
-namespace Ethinking\PushConnector\Connector\Channels\Exceptions;
+namespace EzPlatform\PushConnector\Connector\Channels\Exceptions;
 
 class ChannelNotFoundException extends \InvalidArgumentException implements ExceptionInterface
 {

@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Ethinking\PushConnector\Connector\Services;
+namespace EzPlatform\PushConnector\Connector\Services;
 
 use eZ\Publish\API\Repository\Values\Content\Content;
-use Ethinking\PushConnector\Connector\Channels\Registry\ContentFieldsMapperRegistryInterface;
+use EzPlatform\PushConnector\Connector\Channels\Registry\ContentFieldsMapperRegistryInterface;
 
 /**
  * Class ContentMapperService
- * @package Ethinking\PushConnector\Connector\Services
+ * @package EzPlatform\PushConnector\Connector\Services
  */
 class ContentMapperService
 {
-    /** @var \Ethinking\PushConnector\Connector\Services\ConfigurationDefinitionService */
+    /** @var \EzPlatform\PushConnector\Connector\Services\ConfigurationDefinitionService */
     private $configurationDefinitionService;
 
-    /** @var \Ethinking\PushConnector\Connector\Channels\Registry\ContentFieldsMapperRegistryInterface */
+    /** @var \EzPlatform\PushConnector\Connector\Channels\Registry\ContentFieldsMapperRegistryInterface */
     private $contentFieldsMapperRegistry;
 
     /** @var \eZ\Publish\API\Repository\Values\Content\Content */
@@ -24,8 +24,8 @@ class ContentMapperService
 
     /**
      * ContentMapperService constructor.
-     * @param \Ethinking\PushConnector\Connector\Services\ConfigurationDefinitionService $configurationDefinitionService
-     * @param \Ethinking\PushConnector\Connector\Channels\Registry\ContentFieldsMapperRegistryInterface $contentFieldsMapperRegistry
+     * @param \EzPlatform\PushConnector\Connector\Services\ConfigurationDefinitionService $configurationDefinitionService
+     * @param \EzPlatform\PushConnector\Connector\Channels\Registry\ContentFieldsMapperRegistryInterface $contentFieldsMapperRegistry
      */
     public function __construct(
         ConfigurationDefinitionService $configurationDefinitionService,

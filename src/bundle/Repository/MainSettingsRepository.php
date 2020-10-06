@@ -1,10 +1,10 @@
 <?php
 
-namespace Ethinking\PushConnectorBundle\Repository;
+namespace EzPlatform\PushConnectorBundle\Repository;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Ethinking\PushConnectorBundle\Entity\MainSettings;
+use EzPlatform\PushConnectorBundle\Entity\MainSettings;
 
 class MainSettingsRepository extends ServiceEntityRepository
 {

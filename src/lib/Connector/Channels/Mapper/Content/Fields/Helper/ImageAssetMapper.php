@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Ethinking\PushConnector\Connector\Channels\Mapper\Content\Fields\Helper;
+namespace EzPlatform\PushConnector\Connector\Channels\Mapper\Content\Fields\Helper;
 
 use eZ\Publish\Core\FieldType\ImageAsset\AssetMapper;
 
 /**
  * Class ImageAssetMapper
- * @package Ethinking\PushConnector\Connector\Channels\Mapper\Content\Fields\Helper
+ * @package EzPlatform\PushConnector\Connector\Channels\Mapper\Content\Fields\Helper
  */
 class ImageAssetMapper
 {

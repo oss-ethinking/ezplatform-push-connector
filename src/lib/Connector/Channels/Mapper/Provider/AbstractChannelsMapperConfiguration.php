@@ -1,13 +1,13 @@
 <?php
 
-namespace Ethinking\PushConnector\Connector\Channels\Mapper\Provider;
+namespace EzPlatform\PushConnector\Connector\Channels\Mapper\Provider;
 
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use Generator;
 
 /**
  * Class AbstractChannelsMapperConfiguration
- * @package Ethinking\PushConnector\Connector\Channels\Mapper\Provider
+ * @package EzPlatform\PushConnector\Connector\Channels\Mapper\Provider
  */
 abstract class AbstractChannelsMapperConfiguration implements ChannelConfiguration, ChannelProviderMapperConfigurationInterface
 {

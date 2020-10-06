@@ -1,6 +1,6 @@
 <?php
 
-namespace Ethinking\PushConnectorBundle\DependencyInjection;
+namespace EzPlatform\PushConnectorBundle\DependencyInjection;
 
 use Symfony\Component\Config\Loader\DelegatingLoader;
 use Symfony\Component\Config\Loader\LoaderResolver;
@@ -32,6 +32,7 @@ class EzPlatformPushConnectorExtension extends Extension implements PrependExten
 
         $loader = new DelegatingLoader($resolver);
         $loader->load('services.yaml');//global
+        $loader->load('extensions.yaml');
         $loader->load('ezplatform/services/');//specific to ezplatform
         $loader->load('push/services/');//specific to application
     }

@@ -1,0 +1,7 @@
+services:
+    _defaults:
+        autoconfigure: true
+        autowire: true
+        public: false
+
+    EzPlatform\PushConnectorBundle\Templating\Twig\Extension\EmbedCodeExtension: ~

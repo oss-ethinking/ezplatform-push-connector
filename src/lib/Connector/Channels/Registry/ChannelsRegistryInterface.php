@@ -1,12 +1,12 @@
 <?php
 
-namespace Ethinking\PushConnector\Connector\Channels\Registry;
+namespace EzPlatform\PushConnector\Connector\Channels\Registry;
 
-use Ethinking\PushConnector\Connector\Channels\Provider\PushConnectorChannelsInterface;
+use EzPlatform\PushConnector\Connector\Channels\Provider\PushConnectorChannelsInterface;
 
 /**
  * Interface ChannelsRegistryInterface
- * @package Ethinking\PushConnector\Connector\Channels\Registry
+ * @package EzPlatform\PushConnector\Connector\Channels\Registry
  */
 interface ChannelsRegistryInterface
 {

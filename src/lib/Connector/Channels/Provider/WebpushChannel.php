@@ -1,8 +1,9 @@
 <?php
 
-namespace Ethinking\PushConnector\Connector\Channels\Provider;
+namespace EzPlatform\PushConnector\Connector\Channels\Provider;
 
-use Ethinking\PushConnectorBundle\Service\PushApiService;
+use Ethinking\EthinkingPushApiBundle\Service\PushApiInstance;
+use EzPlatform\PushConnectorBundle\Service\PushService;
 use Psr\Log\LoggerInterface;
 
 class WebpushChannel extends AbstractPushConnectorChannel
@@ -11,7 +12,7 @@ class WebpushChannel extends AbstractPushConnectorChannel
     public const ADAPTER_IDENTIFIER = 'webpush';
 
     /**
-     * @var PushApiService
+     * @var PushApiInstance
      */
     private $pushApiService;
 
@@ -21,12 +22,12 @@ class WebpushChannel extends AbstractPushConnectorChannel
     private $logger;
 
     /**
-     * WebpushChannel constructor.
-     * @param PushApiService $pushApiService
+     * @param PushService $pushService
+     * @param LoggerInterface $logger
      */
-    public function __construct(PushApiService $pushApiService, LoggerInterface $logger)
+    public function __construct(PushService $pushService, LoggerInterface $logger)
     {
-        $this->pushApiService = $pushApiService;
+        $this->pushApiService = $pushService->getPushApiService();
         $this->logger = $logger;
     }
 

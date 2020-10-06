@@ -1,12 +1,12 @@
 <?php
 
-namespace Ethinking\PushConnector\Connector\Channels\Mapper\Content\Fields;
+namespace EzPlatform\PushConnector\Connector\Channels\Mapper\Content\Fields;
 
 use eZ\Publish\API\Repository\Values\Content\Field;
 
 /**
  * Class ImageFieldMapping
- * @package Ethinking\PushConnector\Connector\Channels\Mapper\Content\Fields
+ * @package EzPlatform\PushConnector\Connector\Channels\Mapper\Content\Fields
  */
 class ImageFieldMapping extends AbstractContentFieldsMapping
 {

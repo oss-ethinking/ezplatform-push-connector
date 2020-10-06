@@ -4,5 +4,5 @@ services:
         autoconfigure: true
         public: false
 
-    Ethinking\PushConnector\EzPlatform\UI\Menu\EventSubscriber\:
+    EzPlatform\PushConnector\EzPlatform\UI\Menu\EventSubscriber\:
         resource: '../../../../../lib/EzPlatform/UI/Menu/EventSubscriber/*'

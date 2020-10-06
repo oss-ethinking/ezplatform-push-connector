@@ -1,11 +1,11 @@
 <?php
 
-namespace Ethinking\PushConnectorBundle;
+namespace EzPlatform\PushConnectorBundle;
 
-use Ethinking\PushConnectorBundle\DependencyInjection\Compiler\ContentFieldsMapperPass;
-use Ethinking\PushConnectorBundle\DependencyInjection\Compiler\PushConnectorChannelsProviderPass;
-use Ethinking\PushConnectorBundle\DependencyInjection\Configuration\Parser\PushConfigParser;
-use Ethinking\PushConnectorBundle\DependencyInjection\Security\PolicyProvider\UIEzPlatformPushBundlePolicyProvider;
+use EzPlatform\PushConnectorBundle\DependencyInjection\Compiler\ContentFieldsMapperPass;
+use EzPlatform\PushConnectorBundle\DependencyInjection\Compiler\PushConnectorChannelsProviderPass;
+use EzPlatform\PushConnectorBundle\DependencyInjection\Configuration\Parser\PushConfigParser;
+use EzPlatform\PushConnectorBundle\DependencyInjection\Security\PolicyProvider\UIEzPlatformPushBundlePolicyProvider;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Ethinking\PushConnector\EzPlatform\UI\Permission;
+namespace EzPlatform\PushConnector\EzPlatform\UI\Permission;
 
 use eZ\Publish\API\Repository\PermissionResolver;
 
 /**
  * Class PermissionChecker
- * @package Ethinking\PushConnector\EzPlatform\UI\Permission
+ * @package EzPlatform\PushConnector\EzPlatform\UI\Permission
  */
 class PermissionChecker
 {

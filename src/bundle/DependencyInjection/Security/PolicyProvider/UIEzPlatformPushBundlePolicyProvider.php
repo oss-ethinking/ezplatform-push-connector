@@ -1,6 +1,6 @@
 <?php
 
-namespace Ethinking\PushConnectorBundle\DependencyInjection\Security\PolicyProvider;
+namespace EzPlatform\PushConnectorBundle\DependencyInjection\Security\PolicyProvider;
 
 use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Security\PolicyProvider\YamlPolicyProvider;
 

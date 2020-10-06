@@ -5,16 +5,16 @@ services:
         public: false
 
     #Connector channel configuration
-    Ethinking\PushConnector\Connector\Channels\Provider\:
+    EzPlatform\PushConnector\Connector\Channels\Provider\:
         resource: '../../../../../lib/Connector/Channels/Provider/*'
-        lazy: Ethinking\PushConnector\Connector\Channels\Provider\PushConnectorChannelsInterface
+        lazy: EzPlatform\PushConnector\Connector\Channels\Provider\PushConnectorChannelsInterface
         tags: ['ezplatform.push_connector.channels']
 
-    Ethinking\PushConnector\Connector\Channels\Registry\ChannelsRegistry: ~
+    EzPlatform\PushConnector\Connector\Channels\Registry\ChannelsRegistry: ~
 
-    Ethinking\PushConnector\Connector\Services\ConfigurationDefinitionService: ~
+    EzPlatform\PushConnector\Connector\Services\ConfigurationDefinitionService: ~
 
 
-    Ethinking\PushConnector\Connector\Channels\Mapper\:
+    EzPlatform\PushConnector\Connector\Channels\Mapper\:
         resource: '../../../../../lib/Connector/Channels/Mapper/*'
-        lazy: Ethinking\PushConnector\Connector\Channels\Provider\ChannelConfiguration.php
+        lazy: EzPlatform\PushConnector\Connector\Channels\Provider\ChannelConfiguration.php

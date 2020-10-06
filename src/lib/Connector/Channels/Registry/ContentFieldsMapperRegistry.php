@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Ethinking\PushConnector\Connector\Channels\Registry;
+namespace EzPlatform\PushConnector\Connector\Channels\Registry;
 
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
-use Ethinking\PushConnector\Connector\Channels\Mapper\Content\Fields\ContentFieldsMapperInterface;
+use EzPlatform\PushConnector\Connector\Channels\Mapper\Content\Fields\ContentFieldsMapperInterface;
 
 /**
  * Class ContentFieldsMapperRegistry
- * @package Ethinking\PushConnector\Connector\Channels\Registry
+ * @package EzPlatform\PushConnector\Connector\Channels\Registry
  */
 class ContentFieldsMapperRegistry implements ContentFieldsMapperRegistryInterface
 {
-    /** @var \Ethinking\PushConnector\Connector\Channels\Mapper\Content\Fields\ContentFieldsMapperInterface */
+    /** @var \EzPlatform\PushConnector\Connector\Channels\Mapper\Content\Fields\ContentFieldsMapperInterface */
     private $mappers = [];
 
     /**

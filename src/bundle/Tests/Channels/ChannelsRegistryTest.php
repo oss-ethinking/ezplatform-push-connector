@@ -1,10 +1,10 @@
 <?php
 
-namespace Ethinking\PushConnectorBundle\Tests\Channels;
+namespace EzPlatform\PushConnectorBundle\Tests\Channels;
 
-use Ethinking\PushConnector\Connector\Channels\Exceptions\ChannelNotFoundException;
-use Ethinking\PushConnector\Connector\Channels\Provider\PushConnectorChannelsInterface;
-use Ethinking\PushConnector\Connector\Channels\Registry\ChannelsRegistry;
+use EzPlatform\PushConnector\Connector\Channels\Exceptions\ChannelNotFoundException;
+use EzPlatform\PushConnector\Connector\Channels\Provider\PushConnectorChannelsInterface;
+use EzPlatform\PushConnector\Connector\Channels\Registry\ChannelsRegistry;
 use PHPUnit\Framework\TestCase;
 
 class ChannelsRegistryTest extends TestCase

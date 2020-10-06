@@ -1,6 +1,6 @@
 <?php
 
-namespace Ethinking\PushConnectorBundle\Entity;
+namespace EzPlatform\PushConnectorBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;

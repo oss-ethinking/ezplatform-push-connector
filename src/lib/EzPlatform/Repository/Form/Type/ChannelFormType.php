@@ -1,9 +1,9 @@
 <?php
 
-namespace Ethinking\PushConnector\EzPlatform\Repository\Form\Type;
+namespace EzPlatform\PushConnector\EzPlatform\Repository\Form\Type;
 
-use Ethinking\PushConnectorBundle\Entity\Channel;
-use Ethinking\PushConnectorBundle\Service\PushApiService;
+use Ethinking\EthinkingPushApiBundle\Entity\Channel;
+use Ethinking\EthinkingPushApiBundle\Service\PushApiService;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;

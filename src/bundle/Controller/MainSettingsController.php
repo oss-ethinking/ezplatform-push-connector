@@ -1,12 +1,13 @@
 <?php
 
-namespace Ethinking\PushConnectorBundle\Controller;
+namespace EzPlatform\PushConnectorBundle\Controller;
 
-use Ethinking\PushConnector\EzPlatform\Repository\Form\Factory\FormFactory;
-use Ethinking\PushConnectorBundle\Entity\MainSettings;
-use Ethinking\PushConnectorBundle\Repository\MainSettingsRepository;
-use Ethinking\PushConnectorBundle\Service\PushApiService;
-use Ethinking\PushConnector\EzPlatform\UI\Permission\PermissionChecker;
+use Ethinking\EthinkingPushApiBundle\Service\PushApiInstance;
+use EzPlatform\PushConnector\EzPlatform\Repository\Form\Factory\FormFactory;
+use EzPlatform\PushConnectorBundle\Entity\MainSettings;
+use EzPlatform\PushConnectorBundle\Repository\MainSettingsRepository;
+use EzPlatform\PushConnector\EzPlatform\UI\Permission\PermissionChecker;
+use EzPlatform\PushConnectorBundle\Service\PushService;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +17,7 @@ use \DateTime;
 
 /**
  * Class MainSettingsController
- * @package Ethinking\PushConnectorBundle\Controller
+ * @package EzPlatform\PushConnectorBundle\Controller
  */
 class MainSettingsController extends Controller
 {
@@ -34,7 +35,7 @@ class MainSettingsController extends Controller
     private $mainSettingsRepository;
 
     /**
-     * @var PushApiService
+     * @var PushApiInstance
      */
     private $pushApiService;
 
@@ -44,17 +45,17 @@ class MainSettingsController extends Controller
     private $permissionChecker;
 
     /**
-     * MainSettingsController constructor.
      * @param FormFactory $formFactory
      * @param MainSettingsRepository $mainSettingsRepository
-     * @param PushApiService $pushApiService
+     * @param PushService $pushService
      * @param PermissionChecker $permissionChecker
      */
-    public function __construct(FormFactory $formFactory, MainSettingsRepository $mainSettingsRepository, PushApiService $pushApiService, PermissionChecker $permissionChecker)
+    public function __construct(FormFactory $formFactory, MainSettingsRepository $mainSettingsRepository,
+                                PushService $pushService, PermissionChecker $permissionChecker)
     {
         $this->formFactory = $formFactory;
         $this->mainSettingsRepository = $mainSettingsRepository;
-        $this->pushApiService = $pushApiService;
+        $this->pushApiService = $pushService->getPushApiService();
         $this->permissionChecker = $permissionChecker;
     }
 

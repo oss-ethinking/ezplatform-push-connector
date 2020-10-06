@@ -1,10 +1,10 @@
 <?php
 
-namespace Ethinking\PushConnector\Connector\Channels\Provider;
+namespace EzPlatform\PushConnector\Connector\Channels\Provider;
 
 /**
  * Interface PushConnectorChannelsInterface
- * @package Ethinking\PushConnector\Connector\Channels\Provider
+ * @package EzPlatform\PushConnector\Connector\Channels\Provider
  */
 interface PushConnectorChannelsInterface
 {

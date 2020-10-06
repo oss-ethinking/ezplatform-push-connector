@@ -2,18 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Ethinking\PushConnector\EzPlatform\UI\Menu\EventSubscriber;
+namespace EzPlatform\PushConnector\EzPlatform\UI\Menu\EventSubscriber;
 
+use Ethinking\EthinkingPushApiBundle\Service\PushApiInstance;
+use eZ\Publish\API\Repository\Exceptions\InvalidArgumentException;
 use eZ\Publish\API\Repository\PermissionResolver;
+use EzPlatform\PushConnectorBundle\Service\PushService;
 use EzSystems\EzPlatformAdminUi\Menu\Event\ConfigureMenuEvent;
 use JMS\TranslationBundle\Model\Message;
 use JMS\TranslationBundle\Translation\TranslationContainerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Ethinking\PushConnectorBundle\Service\PushApiService;
 
 /**
  * Class PushConnectorMenuSubscriber
- * @package Ethinking\PushConnector\EzPlatform\UI\Menu\EventSubscriber
+ * @package EzPlatform\PushConnector\EzPlatform\UI\Menu\EventSubscriber
  */
 class PushConnectorMenuSubscriber implements EventSubscriberInterface, TranslationContainerInterface
 {
@@ -28,23 +30,23 @@ class PushConnectorMenuSubscriber implements EventSubscriberInterface, Translati
 
     /**
      * @todo add permissions
-     * @var \eZ\Publish\API\Repository\PermissionResolver
+     * @var PermissionResolver
      */
     private $permissionResolver;
 
     /**
-     * @var PushApiService
+     * @var PushApiInstance
      */
     private $pushApiService;
 
     /**
-     * PushConnectorMenuSubscriber constructor.
-     * @param \eZ\Publish\API\Repository\PermissionResolver $permissionResolver
+     * @param PermissionResolver $permissionResolver
+     * @param PushService $pushService
      */
-    public function __construct(PermissionResolver $permissionResolver, PushApiService $pushApiService)
+    public function __construct(PermissionResolver $permissionResolver, PushService $pushService)
     {
         $this->permissionResolver = $permissionResolver;
-        $this->pushApiService = $pushApiService;
+        $this->pushApiService = $pushService->getPushApiService();
     }
 
     /**
@@ -60,8 +62,8 @@ class PushConnectorMenuSubscriber implements EventSubscriberInterface, Translati
     }
 
     /**
-     * @param \EzSystems\EzPlatformAdminUi\Menu\Event\ConfigureMenuEvent $event
-     * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException
+     * @param ConfigureMenuEvent $event
+     * @throws InvalidArgumentException
      */
     public function onMainMenuConfigure(ConfigureMenuEvent $event): void
     {
@@ -86,7 +88,7 @@ class PushConnectorMenuSubscriber implements EventSubscriberInterface, Translati
                 ]
             );
         }
-        if (!empty($this->pushApiService->getSettings())) {
+        if (!empty($this->pushApiService)) {
             $root[self::PUSH_MAIN_MENU_ITEM]->addChild(
                 self::PUSH_CHANNEL_ITEM,
                 [

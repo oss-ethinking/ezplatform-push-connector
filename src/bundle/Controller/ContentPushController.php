@@ -1,11 +1,14 @@
 <?php
 
-namespace Ethinking\PushConnectorBundle\Controller;
+namespace EzPlatform\PushConnectorBundle\Controller;
 
+use eZ\Publish\API\Repository\Exceptions\InvalidArgumentException;
+use eZ\Publish\API\Repository\Exceptions\NotFoundException;
+use eZ\Publish\API\Repository\Exceptions\UnauthorizedException;
 use eZ\Publish\API\Repository\LocationService;
-use Ethinking\PushConnector\Connector\Services\ContentMapperService;
-use Ethinking\PushConnector\Connector\Services\ContentPushService;
-use Ethinking\PushConnector\EzPlatform\UI\Permission\PermissionChecker;
+use EzPlatform\PushConnector\Connector\Services\ContentMapperService;
+use EzPlatform\PushConnector\Connector\Services\ContentPushService;
+use EzPlatform\PushConnector\EzPlatform\UI\Permission\PermissionChecker;
 use EzSystems\EzPlatformAdminUi\Notification\TranslatableNotificationHandlerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,40 +18,42 @@ use eZ\Publish\API\Repository\URLAliasService;
 
 /**
  * Class ContentPushController
- * @package Ethinking\PushConnectorBundle\Controller
+ * @package EzPlatform\PushConnectorBundle\Controller
  */
 class ContentPushController extends Controller
 {
-    /** @var \eZ\Publish\API\Repository\LocationService */
+    /** @var LocationService */
     private $locationService;
 
-    /** @var \Symfony\Component\Routing\RouterInterface */
+    /** @var RouterInterface */
     private $router;
 
-    /** @var \EzSystems\EzPlatformAdminUi\Notification\TranslatableNotificationHandlerInterface */
+    /** @var TranslatableNotificationHandlerInterface */
     private $notificationHandler;
 
-    /** @var \Symfony\Component\HttpFoundation\RequestStack */
+    /** @var RequestStack */
     private $requestStack;
 
-    /** @var \Ethinking\PushConnector\EzPlatform\UI\Permission\PermissionChecker */
+    /** @var PermissionChecker */
     private $permissionChecker;
 
-    /** @var \Ethinking\PushConnector\Connector\Services\ContentMapperService */
+    /** @var ContentMapperService */
     private $contentMapperService;
 
-    /** @var \Ethinking\PushConnector\Connector\Services\ContentPushService */
+    /** @var ContentPushService */
     private $contentPushService;
 
     private $urlAliasService;
 
     /**
-     * ContentPushController constructor.
-     * @param \eZ\Publish\API\Repository\LocationService $locationService
-     * @param \Symfony\Component\Routing\RouterInterface $router
-     * @param \EzSystems\EzPlatformAdminUi\Notification\TranslatableNotificationHandlerInterface $notificationHandler
-     * @param \Symfony\Component\HttpFoundation\RequestStack $requestStack
-     * @param \Ethinking\PushConnector\EzPlatform\UI\Permission\PermissionChecker $permissionChecker
+     * @param LocationService $locationService
+     * @param RouterInterface $router
+     * @param TranslatableNotificationHandlerInterface $notificationHandler
+     * @param RequestStack $requestStack
+     * @param PermissionChecker $permissionChecker
+     * @param ContentMapperService $contentMapperService
+     * @param ContentPushService $contentPushService
+     * @param URLAliasService $urlAliasService
      */
     public function __construct(
         LocationService $locationService,
@@ -59,7 +64,6 @@ class ContentPushController extends Controller
         ContentMapperService $contentMapperService,
         ContentPushService $contentPushService,
         URLAliasService $urlAliasService
-
     )
     {
         $this->locationService = $locationService;
@@ -73,11 +77,12 @@ class ContentPushController extends Controller
     }
 
     /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param Request $request
      * @param int $locationId
-     * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException
-     * @throws \eZ\Publish\API\Repository\Exceptions\NotFoundException
-     * @throws \eZ\Publish\API\Repository\Exceptions\UnauthorizedException
+     * @return RedirectResponse
+     * @throws InvalidArgumentException
+     * @throws NotFoundException
+     * @throws UnauthorizedException
      */
     public function pushContentAction(Request $request, int $locationId)
     {
@@ -113,5 +118,7 @@ class ContentPushController extends Controller
         } catch (\Exception $e) {
             $this->notificationHandler->error($e->getMessage());
         }
+
+        return null;
     }
 }

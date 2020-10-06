@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Ethinking\PushConnector\Connector\Channels\Registry;
+namespace EzPlatform\PushConnector\Connector\Channels\Registry;
 
-use Ethinking\PushConnector\Connector\Channels\Exceptions\ChannelNotFoundException;
-use Ethinking\PushConnector\Connector\Channels\Provider\PushConnectorChannelsInterface;
+use EzPlatform\PushConnector\Connector\Channels\Exceptions\ChannelNotFoundException;
+use EzPlatform\PushConnector\Connector\Channels\Provider\PushConnectorChannelsInterface;
 
 /**
  * Class ChannelsRegistry
- * @package Ethinking\PushConnector\Connector\Channels\Registry
+ * @package EzPlatform\PushConnector\Connector\Channels\Registry
  */
 class ChannelsRegistry implements ChannelsRegistryInterface
 {
@@ -36,7 +36,7 @@ class ChannelsRegistry implements ChannelsRegistryInterface
 
     /**
      * @param $identifier
-     * @return \Ethinking\PushConnector\Connector\Channels\Provider\PushConnectorChannelsInterface
+     * @return \EzPlatform\PushConnector\Connector\Channels\Provider\PushConnectorChannelsInterface
      */
     public function getChannel($identifier): PushConnectorChannelsInterface
     {
@@ -57,7 +57,7 @@ class ChannelsRegistry implements ChannelsRegistryInterface
     }
 
     /**
-     * @param \Ethinking\PushConnector\Connector\Channels\Provider\PushConnectorChannelsInterface $channel
+     * @param \EzPlatform\PushConnector\Connector\Channels\Provider\PushConnectorChannelsInterface $channel
      */
     public function addChannel(PushConnectorChannelsInterface $channel): void
     {

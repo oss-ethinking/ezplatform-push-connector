@@ -1,8 +1,8 @@
 <?php
 
-namespace Ethinking\PushConnectorBundle\DependencyInjection\Compiler;
+namespace EzPlatform\PushConnectorBundle\DependencyInjection\Compiler;
 
-use Ethinking\PushConnector\Connector\Channels\Registry\ChannelsRegistry;
+use EzPlatform\PushConnector\Connector\Channels\Registry\ChannelsRegistry;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;

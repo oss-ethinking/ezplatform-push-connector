@@ -2,28 +2,29 @@
 
 /** Some experiments first */
 
-namespace Ethinking\PushConnectorBundle\Controller;
+namespace EzPlatform\PushConnectorBundle\Controller;
 
-use Ethinking\PushConnectorBundle\Service\PushApiService;
+use Ethinking\EthinkingPushApiBundle\Service\PushApiInstance;
+use EzPlatform\PushConnectorBundle\Service\PushService;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class ArchiveController
- * @package Ethinking\PushConnectorBundle\Controller
+ * @package EzPlatform\PushConnectorBundle\Controller
  */
 class ArchiveController extends Controller
 {
     /**
-     * @var PushApiService
+     * @var PushApiInstance
      */
     private $pushApiService;
 
     /**
-     * @param PushApiService $pushApiService
+     * @param PushService $pushService
      */
-    public function __construct(PushApiService $pushApiService)
+    public function __construct(PushService $pushService)
     {
-        $this->pushApiService = $pushApiService;
+        $this->pushApiService = $pushService->getPushApiService();
     }
 
     /**

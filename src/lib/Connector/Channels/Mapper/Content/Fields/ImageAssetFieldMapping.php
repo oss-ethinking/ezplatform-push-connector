@@ -1,14 +1,14 @@
 <?php
 
-namespace Ethinking\PushConnector\Connector\Channels\Mapper\Content\Fields;
+namespace EzPlatform\PushConnector\Connector\Channels\Mapper\Content\Fields;
 
 use eZ\Publish\API\Repository\Values\Content\Field;
 use eZ\Publish\Core\FieldType\ImageAsset\AssetMapper;
-use Ethinking\PushConnector\Connector\Channels\Mapper\Content\Fields\Helper\ImageAssetMapperTrait;
+use EzPlatform\PushConnector\Connector\Channels\Mapper\Content\Fields\Helper\ImageAssetMapperTrait;
 
 /**
  * Class ImageAssetFieldMapping
- * @package Ethinking\PushConnector\Connector\Channels\Mapper\Content\Fields
+ * @package EzPlatform\PushConnector\Connector\Channels\Mapper\Content\Fields
  */
 class ImageAssetFieldMapping extends AbstractContentFieldsMapping
 {

@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace Ethinking\PushConnector\Connector\Services;
+namespace EzPlatform\PushConnector\Connector\Services;
 
-use Ethinking\PushConnector\Connector\Channels\Registry\ChannelsRegistry;
+use EzPlatform\PushConnector\Connector\Channels\Registry\ChannelsRegistry;
 
 /**
  * Class ContentPushService
- * @package Ethinking\PushConnector\Connector\Services
+ * @package EzPlatform\PushConnector\Connector\Services
  */
 class ContentPushService
 {
-    /** @var \Ethinking\PushConnector\Connector\Channels\Registry\ChannelsRegistry */
+    /** @var \EzPlatform\PushConnector\Connector\Channels\Registry\ChannelsRegistry */
     private $channelsRegistry;
 
     /**
      * ContentPushService constructor.
-     * @param \Ethinking\PushConnector\Connector\Channels\Registry\ChannelsRegistry $channelsRegistry
+     * @param \EzPlatform\PushConnector\Connector\Channels\Registry\ChannelsRegistry $channelsRegistry
      */
     public function __construct(
         ChannelsRegistry $channelsRegistry

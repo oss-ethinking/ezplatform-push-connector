@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Ethinking\PushConnector\Connector\Services;
+namespace EzPlatform\PushConnector\Connector\Services;
 
 use eZ\Publish\API\Repository\Values\Content\Content;
-use Ethinking\PushConnector\Connector\Channels\Event\AfterResolverChannelsConfiguration;
-use Ethinking\PushConnector\Connector\Channels\Mapper\Provider\ChannelsMapperConfiguration;
-use Ethinking\PushConnector\Connector\Channels\Registry\ChannelsRegistry;
-use Ethinking\PushConnector\Connector\Channels\Registry\ContentFieldsMapperRegistryInterface;
+use EzPlatform\PushConnector\Connector\Channels\Event\AfterResolverChannelsConfiguration;
+use EzPlatform\PushConnector\Connector\Channels\Mapper\Provider\ChannelsMapperConfiguration;
+use EzPlatform\PushConnector\Connector\Channels\Registry\ChannelsRegistry;
+use EzPlatform\PushConnector\Connector\Channels\Registry\ContentFieldsMapperRegistryInterface;
 use EzSystems\EzPlatformAdminUi\Notification\TranslatableNotificationHandlerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
  * Class ConfigurationDefinitionService
- * @package Ethinking\PushConnector\Connector\Services
+ * @package EzPlatform\PushConnector\Connector\Services
  */
 class ConfigurationDefinitionService
 {
@@ -24,22 +24,22 @@ class ConfigurationDefinitionService
     /** @var \Symfony\Component\EventDispatcher\EventDispatcherInterface */
     private $eventDispatcher;
 
-    /** @var \Ethinking\PushConnector\Connector\Channels\Registry\ChannelsRegistry */
+    /** @var \EzPlatform\PushConnector\Connector\Channels\Registry\ChannelsRegistry */
     private $channelsRegistry;
 
-    /** @var \Ethinking\PushConnector\Connector\Channels\Mapper\Provider\ChannelsMapperConfiguration */
+    /** @var \EzPlatform\PushConnector\Connector\Channels\Mapper\Provider\ChannelsMapperConfiguration */
     private $channelsMapperConfiguration;
 
-    /** @var \Ethinking\PushConnector\Connector\Channels\Registry\ContentFieldsMapperRegistryInterface */
+    /** @var \EzPlatform\PushConnector\Connector\Channels\Registry\ContentFieldsMapperRegistryInterface */
     private $contentFieldsMapperRegistry;
 
     /**
      * ConfigurationDefinitionService constructor.
      * @param \EzSystems\EzPlatformAdminUi\Notification\TranslatableNotificationHandlerInterface $notificationHandler
      * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $eventDispatcher
-     * @param \Ethinking\PushConnector\Connector\Channels\Registry\ChannelsRegistry $channelsRegistry
-     * @param \Ethinking\PushConnector\Connector\Channels\Mapper\Provider\ChannelsMapperConfiguration $channelsMapperConfiguration
-     * @param \Ethinking\PushConnector\Connector\Channels\Registry\ContentFieldsMapperRegistryInterface $contentFieldsMapperRegistry
+     * @param \EzPlatform\PushConnector\Connector\Channels\Registry\ChannelsRegistry $channelsRegistry
+     * @param \EzPlatform\PushConnector\Connector\Channels\Mapper\Provider\ChannelsMapperConfiguration $channelsMapperConfiguration
+     * @param \EzPlatform\PushConnector\Connector\Channels\Registry\ContentFieldsMapperRegistryInterface $contentFieldsMapperRegistry
      */
     public function __construct(
         TranslatableNotificationHandlerInterface $notificationHandler,

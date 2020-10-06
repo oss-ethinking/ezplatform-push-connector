@@ -5,22 +5,22 @@ services:
         public: false
 
     #Connector channel configuration
-    Ethinking\PushConnector\Connector\Channels\Mapper\Content\Fields\:
+    EzPlatform\PushConnector\Connector\Channels\Mapper\Content\Fields\:
         resource: '../../../../../lib/Connector/Channels/Mapper/Content/Fields/*'
         tags: ['ezplatform.push_connector.content_fields_mapper']
 
-    Ethinking\PushConnector\Connector\Channels\Registry\ContentFieldsMapperRegistry:
+    EzPlatform\PushConnector\Connector\Channels\Registry\ContentFieldsMapperRegistry:
         arguments:
             - !tagged_iterator ezplatform.push_connector.content_fields_mapper
 
     #FieldType helpers
-    Ethinking\PushConnector\Connector\Channels\Mapper\Content\Fields\Helper\ImageAssetMapper: ~
+    EzPlatform\PushConnector\Connector\Channels\Mapper\Content\Fields\Helper\ImageAssetMapper: ~
 
-    Ethinking\PushConnector\Connector\Channels\Registry\ContentFieldsMapperRegistryInterface: '@Ethinking\PushConnector\Connector\Channels\Registry\ContentFieldsMapperRegistry'
+    EzPlatform\PushConnector\Connector\Channels\Registry\ContentFieldsMapperRegistryInterface: '@EzPlatform\PushConnector\Connector\Channels\Registry\ContentFieldsMapperRegistry'
 
     #Content field mapping
-    Ethinking\PushConnector\Connector\Services\ContentMapperService: ~
+    EzPlatform\PushConnector\Connector\Services\ContentMapperService: ~
 
     #PushService
-    Ethinking\PushConnector\Connector\Services\ContentPushService: ~
+    EzPlatform\PushConnector\Connector\Services\ContentPushService: ~
 
