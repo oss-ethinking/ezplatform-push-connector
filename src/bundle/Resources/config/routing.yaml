@@ -26,12 +26,6 @@ ezplatform.push.channel.delete:
     controller: Ethinking\PushConnectorBundle\Controller\ChannelController::deleteAction
     methods:  [DELETE]
 
-ezplatform.push.channel.embedCode.generate:
-    path:     /push/channel/{id}/embedCode/generate
-    controller: Ethinking\PushConnectorBundle\Controller\ChannelController::generateEmbedCode
-    options:
-        expose: true
-
 ezplatform.push.archive.view:
     path:     /push/archive
     controller: Ethinking\PushConnectorBundle\Controller\ArchiveController::indexAction

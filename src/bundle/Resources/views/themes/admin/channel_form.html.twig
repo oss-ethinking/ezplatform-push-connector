@@ -68,18 +68,6 @@
                             {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
                             {{ form_end(form) }}
                             <small>{{ 'required'|trans|desc('* Required') }}</small>
-                            <div class="form-group" id="pushConnectorChannelCopyDiv">
-                                <div class="col-md-12">
-                                    <button type="button" id="pushConnectorChannelEmbedCodeCopyButton" data-clipboard-target="#pushConnectorChannelEmbedCode"> {{ 'push_delivery_copy_to_clipboard'|trans({},'forms') }}</button>
-                                </div>
-                            </div>
-                            <div class="form-group" id="pushConnectorChannelEmbedCodeDiv">
-                                <div class="col-md-12">
-                                    <pre>
-                                        <code class="language-javascript" id="pushConnectorChannelEmbedCode"></code>
-                                    </pre>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 {% endif %}

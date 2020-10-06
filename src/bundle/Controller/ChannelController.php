@@ -150,18 +150,6 @@ class ChannelController extends Controller
     }
 
     /**
-     * @param $channelId
-     * @return mixed
-     */
-    public function generateEmbedCode($channelId)
-    {
-        $channel = $this->getChannel($channelId);
-        return $this->render('@ezdesign/channel_embed_code.html.twig', [
-            'channel' => $channel
-        ]);
-    }
-
-    /**
      * @return RedirectResponse
      */
     public function downloadJsLibrary()
