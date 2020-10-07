@@ -7,6 +7,7 @@ use Ethinking\EthinkingPushApiBundle\Service\PushApiService;
 use Ethinking\PushConnectorBundle\Service\PushService;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\UrlHelper;
 use Symfony\Component\HttpKernel\KernelInterface;
 
 /**
@@ -25,10 +26,16 @@ class JsLibraryController
      */
     private $pushApiService;
 
-    public function __construct(KernelInterface $kernel, PushService $pushService)
+    /**
+     * @var string
+     */
+    private $absoluteUrl;
+
+    public function __construct(KernelInterface $kernel, PushService $pushService, UrlHelper $urlHelper)
     {
         $this->projectDir = $kernel->getProjectDir();
         $this->pushApiService = $pushService->getPushApiService();
+        $this->absoluteUrl = $urlHelper->getAbsoluteUrl("/");
     }
 
     /**
@@ -67,7 +74,7 @@ class JsLibraryController
                     'apiKey' => "{$channel->getFirebaseApiKey()}",
                     'appId' => "{$channel->getFirebaseAppId()}",
                     'messageSenderId' => "{$channel->getFirebaseMessagingSenderId()}",
-                    'serviceWorkerPath' => "/service-worker.js",
+                    'serviceWorkerPath' => $this->absoluteUrl . "service-worker.js",
                 ],
                 'database' => [
                     'notificationDB' => 'ethinking-notification',

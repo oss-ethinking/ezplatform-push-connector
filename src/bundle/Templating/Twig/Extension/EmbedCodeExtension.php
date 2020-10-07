@@ -6,6 +6,8 @@ use Ethinking\EthinkingPushApiBundle\Entity\Channel;
 use Ethinking\EthinkingPushApiBundle\Service\PushApiInstance;
 use Ethinking\PushConnectorBundle\Service\PushService;
 use Ethinking\EthinkingPushApiBundle\Service\PushApiService;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\UrlHelper;
 use Twig\TwigFunction;
 use Twig\Environment;
 
@@ -16,9 +18,15 @@ class EmbedCodeExtension extends \Ethinking\EthinkingPushApiBundle\Templating\Tw
      */
     private $pushApiService;
 
-    public function __construct(PushService $pushService)
+    /**
+     * @var string
+     */
+    private $absoluteUrl;
+
+    public function __construct(PushService $pushService, UrlHelper $urlHelper)
     {
         $this->pushApiService = $pushService->getPushApiService();
+        $this->absoluteUrl = $urlHelper->getAbsoluteUrl("/");
     }
 
     public function getFunctions()
@@ -54,7 +62,7 @@ class EmbedCodeExtension extends \Ethinking\EthinkingPushApiBundle\Templating\Tw
                     'apiKey' => "{$channel->getFirebaseApiKey()}",
                     'appId' => "{$channel->getFirebaseAppId()}",
                     'messageSenderId' => "{$channel->getFirebaseMessagingSenderId()}",
-                    'serviceWorkerPath' => "/service-worker.js",
+                    'serviceWorkerPath' => $this->absoluteUrl . "service-worker.js",
                 ],
             ],
         ]);
