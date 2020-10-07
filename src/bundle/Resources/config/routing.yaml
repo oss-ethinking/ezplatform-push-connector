@@ -1,8 +1,3 @@
-#test to get bundle up and running for first setups
-ezplatform_push_connector_homepage:
-    path:     /push_connector
-    controller: Ethinking\PushConnectorBundle\Controller\DefaultController::indexAction
-
 ezplatform.push.main_settings.view:
     path:     /push/mainsettings
     controller: Ethinking\PushConnectorBundle\Controller\MainSettingsController::mainAction
@@ -42,7 +37,6 @@ ezplatform.push.archive.more:
     options:
         expose: true
 
-#Content push
 ezplatform.push_content:
     path: /push/content/{locationId}
     methods: GET

@@ -90,11 +90,7 @@ class ContentPushController extends Controller
         $contentId = (int)$location->contentInfo->id;
 
         if (!$this->permissionChecker->checkUserAccess('push', 'content_create_push')) {
-            $this->notificationHandler->warning(
-                'push.view.access_denied',
-                [],
-                'views'
-            );
+            $this->notificationHandler->warning('push.view.access_denied', [],'views');
             return new RedirectResponse($this->router->generate('_ez_content_view', ['contentId' => $contentId]));
         }
 
@@ -103,6 +99,7 @@ class ContentPushController extends Controller
             //Check the supported Content field mapping
             $channelsFieldsValueMapping = $this->contentMapperService->getFieldsMappingFieldValue($location->getContent());
             $urlPath = $this->urlAliasService->reverseLookup($location)->path;
+            // @todo Unnecessary conversion (string)$urlPath, $urlPath is already string
             $this->contentPushService->pushContent($channelsFieldsValueMapping, (string)$urlPath);
 
             //@todo EventListener on Success?

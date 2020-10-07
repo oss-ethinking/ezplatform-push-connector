@@ -35,6 +35,7 @@ class ContentPushService
     }
 
     /**
+     * @todo Method name contains "get" but doesn't return any data but saves
      * @param $enabledMapper
      * @param $articleUrl
      */
@@ -53,6 +54,7 @@ class ContentPushService
      */
     private function pushWithProvider($channel, $fields, $articleUrl)
     {
+        // @todo getChannel() already contains hasChannel() method
         if ($this->channelsRegistry->hasChannel($channel)) {
             $this->channelsRegistry->getChannel($channel)->send($fields, $articleUrl);
         }
