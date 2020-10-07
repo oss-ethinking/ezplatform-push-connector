@@ -38,27 +38,25 @@ class EmbedCodeExtension extends \Ethinking\EthinkingPushApiBundle\Templating\Tw
     {
         $channel = $this->getDefaultWebPushChannel();
         return parent::generate($environment, [
-            'app' =>
-                [
-                    'client' => [
-                        'defaultUrl' => "{$channel->getFallbackUrl()}",
-                        'defaultSubscribedTags' => implode(', ', $channel->getConnectedTagIds()),
-                    ],
-                    'api' => [
-                        'id' => "{$channel->getId()}",
-                        'platformId' => PushApiService::WEB_PUSH,
-                        'baseUrl' => "{$channel->getApiUrl()}",
-                        'accessToken' => "{$channel->getAccessToken()}",
-                    ],
-                    'firebase' =>
-                        [
-                            'projectId' => "{$channel->getFirebaseProjectId()}",
-                            'apiKey' => "{$channel->getFirebaseApiKey()}",
-                            'appId' => "{$channel->getFirebaseAppId()}",
-                            'messageSenderId' => "{$channel->getFirebaseMessagingSenderId()}",
-                            'serviceWorkerPath' => "/service-worker.js",
-                        ],
+            'app' => [
+                'client' => [
+                    'defaultUrl' => "{$channel->getFallbackUrl()}",
+                    'defaultSubscribedTags' => implode(', ', $channel->getConnectedTagIds()),
                 ],
+                'api' => [
+                    'id' => "{$channel->getId()}",
+                    'platformId' => PushApiService::WEB_PUSH,
+                    'baseUrl' => "{$channel->getApiUrl()}",
+                    'accessToken' => "{$channel->getAccessToken()}",
+                ],
+                'firebase' => [
+                    'projectId' => "{$channel->getFirebaseProjectId()}",
+                    'apiKey' => "{$channel->getFirebaseApiKey()}",
+                    'appId' => "{$channel->getFirebaseAppId()}",
+                    'messageSenderId' => "{$channel->getFirebaseMessagingSenderId()}",
+                    'serviceWorkerPath' => "/service-worker.js",
+                ],
+            ],
         ]);
     }
 

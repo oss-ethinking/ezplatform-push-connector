@@ -43,3 +43,17 @@ ezplatform.push_content:
     requirements:
         locationId: '\d+'
     controller: Ethinking\PushConnectorBundle\Controller\ContentPushController:pushContentAction
+
+ezplatform.push.js.service_worker:
+    path: /service-worker.js
+    methods: GET
+    controller: Ethinking\PushConnectorBundle\Controller\JsLibraryController::serviceWorkerAction
+    options:
+        expose: true
+
+ezplatform.push.js.webpush:
+    path: /webpush.js
+    methods: GET
+    controller: Ethinking\PushConnectorBundle\Controller\JsLibraryController::webpushAction
+    options:
+        expose: true
