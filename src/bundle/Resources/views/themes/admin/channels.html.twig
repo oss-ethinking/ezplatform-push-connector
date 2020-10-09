@@ -28,8 +28,6 @@
             </div>
             <div class="container-fluid ez-main-container container mt-4 px-5">
 
-                {{ ez_push_connector_embed_code() }}
-
                 {% if access_denied is defined %}
                     {{ 'push.view.access_denied'|trans|desc('You are not allowed to access this view. Please contact the website administrator') }}
                 {% else %}
