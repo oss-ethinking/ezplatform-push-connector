@@ -80,7 +80,7 @@ class JsLibraryController
                     'apiKey' => "{$channel->getFirebaseApiKey()}",
                     'appId' => "{$channel->getFirebaseAppId()}",
                     'messageSenderId' => "{$channel->getFirebaseMessagingSenderId()}",
-                    'serviceWorkerPath' => "{$channel->getApiUrl()}/service-worker.js",
+                    'serviceWorkerPath' => "/service-worker.js",
                 ],
                 'database' => [
                     'notificationDB' => 'ethinking-notification',
