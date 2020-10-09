@@ -147,13 +147,6 @@ class ChannelFormType extends AbstractType
                 ]
             )
             ->add(
-                'serviceWorkerPath',
-                HiddenType::class,
-                [
-                    self::REQUIRED => false
-                ]
-            )
-            ->add(
                 'accessToken',
                 HiddenType::class,
                 [

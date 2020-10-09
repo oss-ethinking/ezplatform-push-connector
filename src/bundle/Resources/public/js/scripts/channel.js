@@ -18,14 +18,10 @@
             firebaseFieldSelectors.forEach((firebaseFieldSelector) => {
                 show(doc.querySelector(firebaseFieldSelector).closest("div"));
             });
-
-            show(doc.querySelector('#channel_form_serviceWorkerPath'));
         } else {
             firebaseFieldSelectors.forEach((firebaseFieldSelector) => {
                 hide(doc.querySelector(firebaseFieldSelector).closest("div"));
             });
-
-            hide(doc.querySelector('#channel_form_serviceWorkerPath'));
         }
     };
     const show = (element) => {
