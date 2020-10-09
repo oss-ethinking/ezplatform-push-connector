@@ -162,16 +162,6 @@ class ChannelFormType extends AbstractType
                         self::CLASS_ATTRIBUTE => 'save btn-primary',
                     ],
                 ]
-            )
-            ->add(
-                'generate',
-                ButtonType::class,
-                [
-                    self::LABEL => 'Generate Code',
-                    'attr' => [
-                        self::CLASS_ATTRIBUTE => 'btn-secondary',
-                    ],
-                ]
             );
     }
 
