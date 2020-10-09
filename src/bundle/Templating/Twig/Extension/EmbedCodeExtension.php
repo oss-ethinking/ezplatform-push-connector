@@ -44,7 +44,13 @@ class EmbedCodeExtension extends \Ethinking\EthinkingPushApiBundle\Templating\Tw
 
     public function generate(Environment $environment, $config = []): string
     {
-        $channel = $this->getDefaultWebPushChannel();
+        /** @var Channel $channel */
+        $channel = $this->pushApiService->getDefaultWebPushChannel();
+
+        if (empty($channel)) {
+            return parent::generate($environment, []);
+        }
+
         return parent::generate($environment, [
             'app' => [
                 'client' => [
@@ -66,16 +72,5 @@ class EmbedCodeExtension extends \Ethinking\EthinkingPushApiBundle\Templating\Tw
                 ],
             ],
         ]);
-    }
-
-    /**
-     * @return Channel | NULL
-     */
-    private function getDefaultWebPushChannel()
-    {
-        /** @var Channel $channel */
-        $channel = $this->pushApiService->getDefaultWebPushChannel();
-
-        return $channel ?? new Channel();
     }
 }

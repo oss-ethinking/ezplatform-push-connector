@@ -56,7 +56,13 @@ class JsLibraryController
      */
     public function serviceWorkerAction()
     {
-        $channel = $this->getDefaultWebPushChannel();
+        /** @var Channel $channel */
+        $channel = $this->pushApiService->getDefaultWebPushChannel();
+
+        if (empty($channel)) {
+            return new Response("", Response::HTTP_NOT_FOUND);
+        }
+
         $config = [
             'app' => [
                 'client' => [
@@ -99,16 +105,5 @@ EOD;
         return new Response($js, Response::HTTP_OK, [
             'Content-Type' => 'text/javascript'
         ]);
-    }
-
-    /**
-     * @return Channel | NULL
-     */
-    private function getDefaultWebPushChannel()
-    {
-        /** @var Channel $channel */
-        $channel = $this->pushApiService->getDefaultWebPushChannel();
-
-        return $channel ?? new Channel();
     }
 }
