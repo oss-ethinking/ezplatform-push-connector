@@ -68,7 +68,7 @@ class EmbedCodeExtension extends \Ethinking\EthinkingPushApiBundle\Templating\Tw
                     'apiKey' => "{$channel->getFirebaseApiKey()}",
                     'appId' => "{$channel->getFirebaseAppId()}",
                     'messageSenderId' => "{$channel->getFirebaseMessagingSenderId()}",
-                    'serviceWorkerPath' => $this->absoluteUrl . "service-worker.js",
+                    'serviceWorkerPath' => "{$channel->getApiUrl()}/service-worker.js",
                 ],
             ],
         ]);
