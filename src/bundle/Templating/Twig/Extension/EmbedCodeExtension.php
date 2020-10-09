@@ -60,7 +60,7 @@ class EmbedCodeExtension extends \Ethinking\EthinkingPushApiBundle\Templating\Tw
                 'api' => [
                     'id' => "{$channel->getId()}",
                     'platformId' => PushApiService::WEB_PUSH,
-                    'baseUrl' => "{$channel->getApiUrl()}",
+                    'baseUrl' => "{$channel->getApiUrl()}/push-api/",
                     'accessToken' => "{$channel->getAccessToken()}",
                 ],
                 'firebase' => [
@@ -68,7 +68,7 @@ class EmbedCodeExtension extends \Ethinking\EthinkingPushApiBundle\Templating\Tw
                     'apiKey' => "{$channel->getFirebaseApiKey()}",
                     'appId' => "{$channel->getFirebaseAppId()}",
                     'messageSenderId' => "{$channel->getFirebaseMessagingSenderId()}",
-                    'serviceWorkerPath' => "/service-worker.js",
+                    'serviceWorkerPath' => "/wrapper-service-worker.js",
                 ],
             ],
         ]);

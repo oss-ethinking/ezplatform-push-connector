@@ -72,7 +72,7 @@ class JsLibraryController
                 'api' => [
                     'id' => "{$channel->getId()}",
                     'platformId' => PushApiService::WEB_PUSH,
-                    'baseUrl' => "{$channel->getApiUrl()}",
+                    'baseUrl' => "{$channel->getApiUrl()}/push-api/",
                     'accessToken' => "{$channel->getAccessToken()}",
                 ],
                 'firebase' => [
