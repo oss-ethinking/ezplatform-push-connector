@@ -15,6 +15,7 @@ services:
         arguments:
             - '@Symfony\Contracts\HttpClient\HttpClientInterface'
             - '@logger'
+            - '@Symfony\Contracts\Cache\CacheInterface'
 
     Ethinking\PushConnectorBundle\Service\PushService:
         arguments:

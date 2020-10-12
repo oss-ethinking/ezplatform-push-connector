@@ -72,6 +72,7 @@ class ChannelController extends Controller
             $hasAdded = $this->pushApiService->addChannelAndDefaultTag($form->getData());
 
             if ($hasAdded) {
+                $this->pushApiService->clearDefaultWebPushChannel();
                 $this->addFlash('success', $translator->trans('push_delivery_channel_creation_success', [], 'forms'));
                 return new RedirectResponse($this->generateUrl('ezplatform.push.channel.view'));
             } else {
@@ -109,9 +110,10 @@ class ChannelController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $hasAdded = $this->pushApiService->updateChannel($form->getData());
+            $hasUpdated = $this->pushApiService->updateChannel($form->getData());
 
-            if ($hasAdded) {
+            if ($hasUpdated) {
+                $this->clearDefaultChannelById($id);
                 $this->addFlash('success', $translator->trans('push_delivery_channel_save_success', [], 'forms'));
                 return new RedirectResponse($this->generateUrl('ezplatform.push.channel.view'));
             } else {
@@ -143,10 +145,24 @@ class ChannelController extends Controller
 
         foreach ($ids as $id) {
             $this->pushApiService->deleteChannel($id);
+            $this->clearDefaultChannelById($id);
         }
 
         $this->addFlash('success', $translator->trans('push_delivery_channel_remove_success', [], 'forms'));
         return new RedirectResponse($this->generateUrl('ezplatform.push.channel.view'));
+    }
+
+    /**
+     * Clears default channel cache if passed channel id matches
+     * @param string $channelId
+     */
+    public function clearDefaultChannelById($channelId)
+    {
+        $defaultChannel = $this->pushApiService->getDefaultWebPushChannel();
+
+        if (!empty($defaultChannel) && $defaultChannel->getId() === intval($channelId)) {
+            $this->pushApiService->clearDefaultWebPushChannel();
+        }
     }
 
     /**
