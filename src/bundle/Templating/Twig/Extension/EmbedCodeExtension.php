@@ -55,6 +55,7 @@ class EmbedCodeExtension extends \Ethinking\EthinkingPushApiBundle\Templating\Tw
             'app' => [
                 'client' => [
                     'defaultUrl' => "{$channel->getFallbackUrl()}",
+                    'autosubscribe' => true,
                     'defaultSubscribedTags' => implode(', ', $channel->getConnectedTagIds()),
                 ],
                 'api' => [
