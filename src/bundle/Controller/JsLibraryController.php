@@ -52,6 +52,19 @@ class JsLibraryController
     }
 
     /**
+     * @return BinaryFileResponse
+     */
+    public function serviceWorkerLibraryAction()
+    {
+        $path = $this->projectDir .
+            '/vendor/ethinking/push-api/src/bundle/Resources/public/js/scripts/service-worker.js';
+
+        return new BinaryFileResponse($path, Response::HTTP_OK, [
+            'Content-Type' => 'text/javascript'
+        ]);
+    }
+
+    /**
      * @return Response
      */
     public function serviceWorkerAction()
@@ -98,8 +111,7 @@ class JsLibraryController
 
         $js = <<<EOD
 var config = $configJson;
-
-importScripts('/assets/ezplatform/build/ethinking-push-api-service-worker-js.js');  
+importScripts('service-worker-library.js');
 EOD;
 
         return new Response($js, Response::HTTP_OK, [

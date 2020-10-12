@@ -51,6 +51,13 @@ ezplatform.push.js.service_worker:
     options:
         expose: true
 
+ezplatform.push.js.service_worker_library:
+    path: /service-worker-library.js
+    methods: GET
+    controller: Ethinking\PushConnectorBundle\Controller\JsLibraryController::serviceWorkerLibraryAction
+    options:
+        expose: true
+
 ezplatform.push.js.webpush:
     path: /webpush.js
     methods: GET
