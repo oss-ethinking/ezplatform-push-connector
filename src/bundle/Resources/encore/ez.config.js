@@ -11,4 +11,7 @@ module.exports = (Encore) => {
         .addEntry('ezplatform-push-connector-settings-js', [
             path.resolve(__dirname, '../public/js/scripts/settings.js'),
         ])
+        .addStyleEntry('ezplatform-push-connector-main-css', [
+            path.resolve(__dirname, '../public/scss/main.scss'),
+        ])
 };

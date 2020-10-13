@@ -2,6 +2,10 @@ ezplatform.push.main_settings.view:
     path:     /push/mainsettings
     controller: Ethinking\PushConnectorBundle\Controller\MainSettingsController::mainAction
 
+ezplatform.push.main_settings.clear_cache:
+    path:     /push/mainsettings/clear-cache
+    controller: Ethinking\PushConnectorBundle\Controller\MainSettingsController::clearCacheAction
+
 ezplatform.push.channel.view:
     path:     /push/channel
     controller: Ethinking\PushConnectorBundle\Controller\ChannelController::indexAction

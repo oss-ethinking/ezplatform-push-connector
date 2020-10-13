@@ -4,6 +4,9 @@
 {% block javascripts %}
     {{ encore_entry_script_tags('ezplatform-push-connector-settings-js', null, 'ezplatform') }}
 {% endblock %}
+{% block stylesheets %}
+    {{ encore_entry_link_tags('ezplatform-push-connector-main-css', null, 'ezplatform') }}
+{% endblock %}
 {% block content %}
     <div class="row align-items-stretch ez-main-row">
         <div class="px-0 ez-content-container">
@@ -58,9 +61,16 @@
                     {% form_theme form '@ezdesign/ui/form_fields.html.twig'  %}
                     <div class="display-results">
                         <div class="display-results col-md-6">
-                            <div class="form-group ">
-                                {{ form_start(form, { 'attr': {'novalidate': 'novalidate'} }) }}
-                                {{ form_end(form) }}
+                            {{ form_start(form, { 'attr': {'novalidate': 'novalidate'} }) }}
+                            {{ form_end(form) }}
+
+                            <div class="form-group">
+                                <a href="{{ path('ezplatform.push.main_settings.clear_cache') }}" class="btn-secondary btn">
+                                    {{ 'push_delivery_clear_cache'|trans({},'forms') }}
+                                </a>
+                            </div>
+
+                            <div class="form-group">
                                 <small>{{ 'required'|trans|desc('* Required') }}</small>
                             </div>
                         </div>

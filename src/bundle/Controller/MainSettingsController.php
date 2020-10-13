@@ -21,9 +21,6 @@ use \DateTime;
  */
 class MainSettingsController extends Controller
 {
-
-    const PUSH_SETTINGS_SAVED = 'push_delivery_settings_saved';
-
     /**
      * @var FormFactory
      */
@@ -64,6 +61,25 @@ class MainSettingsController extends Controller
      * @return JsonResponse|Response|null
      * @throws Exception
      */
+    public function clearCacheAction(Request $request)
+    {
+        $translator = $this->get('translator');
+        $hasCleared = $this->pushApiService->clearDefaultWebPushChannel();
+        
+        if ($hasCleared) {
+            $this->addFlash('success', $translator->trans('push_delivery_cache_cleared', [], 'forms'));
+        } else {
+            $this->addFlash('error', $translator->trans('push_delivery_cache_clear_failed', [], 'forms'));
+        }
+
+        return new RedirectResponse($this->generateUrl('ezplatform.push.main_settings.view'));
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse|Response|null
+     * @throws Exception
+     */
     public function mainAction(Request $request)
     {
         if (!$this->permissionChecker->checkUserAccess('push', 'settings')) {
@@ -86,7 +102,7 @@ class MainSettingsController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $this->updateSettings($form->getData(), $mainSettings);
             $translator = $this->get('translator');
-            $this->addFlash('success', $translator->trans(self::PUSH_SETTINGS_SAVED, [], 'forms'));
+            $this->addFlash('success', $translator->trans('push_delivery_settings_saved', [], 'forms'));
             return new RedirectResponse($this->generateUrl('ezplatform.push.main_settings.view'));
         }
 
