@@ -1,4 +1,5 @@
-== EzPlatform Push Connector
+= EzPlatform Push Connector
+ethinking <push.delivery@ethinking.de>
 
 The Push Delivery Connector from ethinking GmbH lets you enhance your
 CMS experience with providing access to new ways of reaching your
@@ -11,8 +12,7 @@ templates.
 
 === Installation
 
-The easiest and recommended way to install this utility is as a composer
-package:
+The recommended way to install this utility is via composer:
 
 [source,php]
 ----
@@ -44,6 +44,11 @@ Clear cache
 [source,php]
 ----
 php bin/console c:c
+----
+
+Add embed code placeholder into your twig template
+----
+{{ ez_push_connector_embed_code() }}
 ----
 
 if you're getting an error about missing dependencies in the
