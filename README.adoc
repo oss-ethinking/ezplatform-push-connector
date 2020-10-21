@@ -12,7 +12,7 @@ templates.
 
 === Installation
 
-The recommended way to install this utility is via composer:
+The recommended way to install a library is via composer:
 
 [source,php]
 ----
@@ -20,7 +20,7 @@ composer require ethinking/push-api dev-master
 composer require ethinking/ezplatform-push-connector dev-master
 ----
 
-=== Usage
+=== Preparation
 
 Create ezplatform_push_connector.yaml in the config/routes/ with the
 next code:
@@ -46,14 +46,33 @@ Clear cache
 php bin/console c:c
 ----
 
+=== Errors
+
+if you're getting an error about missing dependencies in the
+entrypoints.json, try to delete manually "public/assets/ezplatform"
+directory and update assets again using command "composer install".
+
+Also make sure you have the next records in the config/bundles.php:
+
+----
+Ethinking\PushConnectorBundle\EzPlatformPushConnectorBundle::class => ['all' => true],
+Ethinking\EthinkingPushApiBundle\EthinkingPushApiBundle::class => ['all' => true],
+----
+
+=== Configuration
+
+After installation, a new menu item "Push" will appear in the navigation with the sub menu item "Main settings"
+http://YOUR_WEBSITE_URL/admin/push/mainsettings
+
+Fill out fields on the "Main settings" page with the received information.
+
+Create a new channel on the "Channels" page http://YOUR_WEBSITE_URL/admin/push/channel
+
+=== Usage
 Add embed code placeholder into your twig template
 ----
 {{ ez_push_connector_embed_code() }}
 ----
-
-if you're getting an error about missing dependencies in the
-entrypoints.json, try to delete manually "public/assets/ezplatform"
-directory and update assets again
 
 === Dependencies
 
