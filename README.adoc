@@ -22,7 +22,7 @@ composer require ethinking/ezplatform-push-connector dev-master
 
 === Preparation
 
-Create ezplatform_push_connector.yaml in the config/routes/ with the
+1) Create ezplatform_push_connector.yaml in the config/routes/ with the
 next code:
 
 [source,yaml]
@@ -31,15 +31,32 @@ ezplatform_push_connector:
   resource: "@EzPlatformPushConnectorBundle/Resources/config/routing.yaml"
   prefix:   /
 ----
+2) Add a yaml file in config/packages with the format:
 
-Update assets
+[source,yaml]
+----
+ezplatform:
+    system:
+        admin_group:
+            push_config:
+                content_types_map:
+                    article:
+                        webpush:
+                          fields:
+                            title: '<content_field_title>'
+                            message: '<content_field_message>'
+                          enabled: true
+----
+Replace <content_field_title> and <content_field_message> with the identifier of respective content fields.This maps the fields in content to be pushed with the push payload .Import this yaml file in config/packages/ezplatform.yaml
+
+3) Update assets
 
 [source,php]
 ----
 yarn encore dev
 ----
 
-Clear cache
+4) Clear cache
 
 [source,php]
 ----
