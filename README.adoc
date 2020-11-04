@@ -49,6 +49,30 @@ ezplatform:
 ----
 Replace <content_field_title> and <content_field_message> with the identifier of respective content fields.This maps the fields in content to be pushed with the push payload .Import this yaml file in config/packages/ezplatform.yaml
 
+Example:
+File config/packages/push_mapping.yaml with content:
+[source,yaml]
+----
+ezplatform:
+    system:
+        admin_group:
+            push_config:
+                content_types_map:
+                    article:
+                        webpush:
+                          fields:
+                            title: 'push_title'
+                            message: 'push_summary'
+                          enabled: true
+----
+And import this file in config/packages/ezplatform.yaml:
+
+[source,yaml]
+----
+imports:
+    - push_mapping.yaml
+----
+
 3) Update assets
 
 [source,php]
