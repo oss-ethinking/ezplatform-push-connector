@@ -4,7 +4,7 @@ ethinking <push.delivery@ethinking.de>
 The Push Delivery Connector from ethinking GmbH lets you enhance your
 https://www.ibexa.co/[ibexa DXP] experience with providing access to new ways of reaching your
 customers using your content. It establishes the possibility to
-send push notifi cations to various platforms from the inside of your
+send push notifications to various platforms from the inside of your
 CMS. The connector will provide its own tabs next to the admin section
 to let your CMS admin easily set up all necessary connections. Moreover,
 it is designed to create and alter distribution channels or push
@@ -43,8 +43,8 @@ ezplatform:
                     article:
                         webpush:
                           fields:
-                            title: '<content_field_title>'
-                            message: '<content_field_message>'
+                            title: '<title_content_field>'
+                            message: '<message_content_field>'
                           enabled: true
 ----
 
@@ -53,7 +53,7 @@ This maps the fields in content to be pushed with the push payload.
 +
 Import this yaml file in config/packages/ezplatform.yaml
 +
-IMPORTANT: Replace <content_field_title> and <content_field_message> with the identifier of respective content fields. Currently we support Textline / ezstring field types. (https://doc.ibexa.co/en/1.13/api/field_type_reference)
+IMPORTANT: Replace <title_content_field> and <message_content_field> with the identifier of respective content fields. Currently we support Textline / ezstring field types. (https://doc.ibexa.co/en/1.13/api/field_type_reference)
 +
 . Run the script in MySQL database
 +
@@ -70,6 +70,11 @@ create table push_delivery_main_settings
  updated_on DATETIME NOT NULL,
  CONSTRAINT PK_PUSH_DELIVERY_MAIN_SETTINGS PRIMARY KEY(settings_id)
 );
+----
+. Add embed code placeholder into your twig template for frontend
++
+----
+{{ ez_push_connector_embed_code() }}
 ----
 . Update assets
 +
@@ -106,11 +111,6 @@ Create a new channel on the "Channels" page http://YOUR_WEBSITE_URL/admin/push/c
 
 image::push-connector/channel.png[]
 
-== Template Usage
-Add embed code placeholder into your twig template
-----
-{{ ez_push_connector_embed_code() }}
-----
 
 == Push history
 
@@ -136,12 +136,12 @@ image::push-connector/archive.png[]
 ----
 ==  Workflow
 
-. When main settings is saved in ezPlatform, this will be always used by ezPlatform for communicating with push.delivery
+. When main settings is saved in ezPlatform, this will be used by ezPlatform for communicating with push.delivery service
 . When a channel is created in ezPlatform:
 .. System will make sure there is always a default xref:guides/admin/index.adoc#tags[tag] in push.delivery with sourceID 'push-connector-tag-general-<client-ID>'. If missing, this will be created
 .. xref:guides/admin/index.adoc#apps[App] is created in push.delivery and will be connected to tag mentioned above
 . When the ezPlatform frontend is accessed from browser, the browser will be registered for push against this tag in push.delivery
-. When push icon is clicked from an article, push notification is send from push.delivery to all subscribers of this tag
+. When an article is pushed from ezPlatform backend, push notification is send from push.delivery to all subscribers of this tag
 
 CAUTION: Make sure you create only one channel with webpush platform because subscriptions will be always done against the webpush channel found by the system
 
