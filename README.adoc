@@ -2,15 +2,15 @@
 ethinking <push.delivery@ethinking.de>
 
 The Push Delivery Connector from ethinking GmbH lets you enhance your
-CMS experience with providing access to new ways of reaching your
-customers using your created content. It establishes the possibility to
+https://www.ibexa.co/[ibexa DXP] experience with providing access to new ways of reaching your
+customers using your content. It establishes the possibility to
 send push notifi cations to various platforms from the inside of your
 CMS. The connector will provide its own tabs next to the admin section
 to let your CMS admin easily set up all necessary connections. Moreover,
 it is designed to create and alter distribution channels or push
 templates.
 
-=== Installation
+== Installation
 
 The recommended way to install a library is via composer:
 
@@ -20,19 +20,19 @@ composer require ethinking/push-api dev-master
 composer require ethinking/ezplatform-push-connector dev-master
 ----
 
-=== Preparation
+== Preparation
 
-1) Create ezplatform_push_connector.yaml in the config/routes/ with the
+. Create ezplatform_push_connector.yaml in the config/routes/ with the
 next code:
-
++
 [source,yaml]
 ----
 ezplatform_push_connector:
   resource: "@EzPlatformPushConnectorBundle/Resources/config/routing.yaml"
   prefix:   /
 ----
-2) Add a yaml file in config/packages with the format:
-
+. Create push_mapping.yaml in the config/packages/ with the format:
++
 [source,yaml]
 ----
 ezplatform:
@@ -47,48 +47,16 @@ ezplatform:
                             message: '<content_field_message>'
                           enabled: true
 ----
-Replace <content_field_title> and <content_field_message> with the identifier of respective content fields. This maps the fields in content to be pushed with the push payload. Import this yaml file in config/packages/ezplatform.yaml +
-Note: Currently we support Textline / ezstring field types. (https://doc.ibexa.co/en/1.13/api/field_type_reference)
 
-Example:
-File config/packages/push_mapping.yaml with content:
-[source,yaml]
-----
-ezplatform:
-    system:
-        admin_group:
-            push_config:
-                content_types_map:
-                    article:
-                        webpush:
-                          fields:
-                            title: 'push_title'
-                            message: 'push_summary'
-                          enabled: true
-----
-And import this file in config/packages/ezplatform.yaml:
-
-[source,yaml]
-----
-imports:
-    - push_mapping.yaml
-----
-
-3) Update assets
-
-[source,php]
-----
-yarn encore dev
-----
-
-4) Clear cache
-
-[source,php]
-----
-php bin/console c:c
-----
-
-5) Run the database script
++
+This maps the fields in content to be pushed with the push payload.
++
+Import this yaml file in config/packages/ezplatform.yaml
++
+IMPORTANT: Replace <content_field_title> and <content_field_message> with the identifier of respective content fields. Currently we support Textline / ezstring field types. (https://doc.ibexa.co/en/1.13/api/field_type_reference)
++
+. Run the script in MySQL database
++
 [source,sql]
 ----
 create table push_delivery_main_settings
@@ -103,36 +71,55 @@ create table push_delivery_main_settings
  CONSTRAINT PK_PUSH_DELIVERY_MAIN_SETTINGS PRIMARY KEY(settings_id)
 );
 ----
+. Update assets
++
+[source,php]
+----
+yarn encore dev
+----
 
-=== Errors
+. Clear cache
++
+[source,php]
+----
+php bin/console c:c
+----
 
-if you're getting an error about missing dependencies in the
-entrypoints.json, try to delete manually "public/assets/ezplatform"
-directory and update assets again using command "composer install".
 
-Also make sure you have the next records in the config/bundles.php:
-
+TIP: If you're getting an error about missing dependencies in the entrypoints.json, try to delete manually "public/assets/ezplatform"
+directory and update assets again using command "composer install". Also make sure you have the next records in the config/bundles.php:
 ----
 Ethinking\PushConnectorBundle\EzPlatformPushConnectorBundle::class => ['all' => true],
 Ethinking\EthinkingPushApiBundle\EthinkingPushApiBundle::class => ['all' => true],
 ----
 
-=== Configuration
+== Configuration
 
 After installation, a new menu item "Push" will appear in the navigation with the sub menu item "Main settings"
 http://YOUR_WEBSITE_URL/admin/push/mainsettings
 
 Fill out fields on the "Main settings" page with the received information.
 
+image::push-connector/main-settings.png[]
+
 Create a new channel on the "Channels" page http://YOUR_WEBSITE_URL/admin/push/channel
 
-=== Usage
+image::push-connector/channel.png[]
+
+== Template Usage
 Add embed code placeholder into your twig template
 ----
 {{ ez_push_connector_embed_code() }}
 ----
 
-=== Dependencies
+== Push history
+
+You can review status of pushes on the archive page http://YOUR_WEBSITE_URL/admin/push/archive
+
+image::push-connector/archive.png[]
+
+
+== Dependencies
 
 [source,json]
 ----
@@ -146,4 +133,44 @@ Add embed code placeholder into your twig template
     "symfony/mime": "^4.3|^5.0",
     "ethinking/push-api": "dev-master"
 }
+----
+==  Workflow
+
+. When main settings is saved in ezPlatform, this will be always used by ezPlatform for communicating with push.delivery
+. When a channel is created in ezPlatform:
+.. System will make sure there is always a default xref:guides/admin/index.adoc#tags[tag] in push.delivery with sourceID 'push-connector-tag-general-<client-ID>'. If missing, this will be created
+.. xref:guides/admin/index.adoc#apps[App] is created in push.delivery and will be connected to tag mentioned above
+. When the ezPlatform frontend is accessed from browser, the browser will be registered for push against this tag in push.delivery
+. When push icon is clicked from an article, push notification is send from push.delivery to all subscribers of this tag
+
+CAUTION: Make sure you create only one channel with webpush platform because subscriptions will be always done against the webpush channel found by the system
+
+
+[plantuml, diagram-classes, png] 
+----
+@startuml
+|#AAA|Browser|
+start
+:grant permission;
+|#DDD|Firebase|
+:generate device token;
+|Browser|
+:save settings;
+|#AntiqueWhite|eZ Platform|
+:registeration request;
+|push.delivery|
+:store device token;
+stop;
+|eZ Platform|
+start
+:Content/Articles;
+|push.delivery|
+:push request;
+|Firebase|
+:send message;
+|Browser|
+:notification popup;
+ stop;
+@endum
+
 ----
