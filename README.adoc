@@ -1,4 +1,4 @@
-= EzPlatform Push Connector
+= Ibexa DXP Push Connector
 ethinking <push.delivery@ethinking.de>
 
 The Push Delivery Connector from ethinking GmbH lets you enhance your
@@ -16,19 +16,18 @@ The recommended way to install a library is via composer:
 
 [source,php]
 ----
-composer require ethinking/push-api dev-master
-composer require ethinking/ezplatform-push-connector dev-master
+composer require ethinking/ibexa-push-connector
 ----
 
 == Preparation
 
-. Create ezplatform_push_connector.yaml in the config/routes/ with the
+. Create ibexa_push_connector.yaml in the config/routes/ with the
 next code:
 +
 [source,yaml]
 ----
-ezplatform_push_connector:
-  resource: "@EzPlatformPushConnectorBundle/Resources/config/routing.yaml"
+ibexa_push_connector:
+  resource: "@IbexaPushConnectorBundle/Resources/config/routing.yaml"
   prefix:   /
 ----
 . Create push_mapping.yaml in the config/packages/ with the format:
@@ -74,7 +73,7 @@ create table push_delivery_main_settings
 . Add embed code placeholder into your twig template for frontend
 +
 ----
-{{ ez_push_connector_embed_code() }}
+{{ ibexa_push_connector_embed_code() }}
 ----
 . Update assets
 +
@@ -94,7 +93,7 @@ php bin/console c:c
 TIP: If you're getting an error about missing dependencies in the entrypoints.json, try to delete manually "public/assets/ezplatform"
 directory and update assets again using command "composer install". Also make sure you have the next records in the config/bundles.php:
 ----
-Ethinking\PushConnectorBundle\EzPlatformPushConnectorBundle::class => ['all' => true],
+Ethinking\PushConnectorBundle\IbexaPushConnectorBundle::class => ['all' => true],
 Ethinking\EthinkingPushApiBundle\EthinkingPushApiBundle::class => ['all' => true],
 ----
 
