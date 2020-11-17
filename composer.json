@@ -1,6 +1,6 @@
 {
-  "name": "ethinking/ezplatform-push-connector",
-  "description": "EzPlatform Push Connector",
+  "name": "ethinking/ibexa-push-connector",
+  "description": "Ibexa DXP Push Connector",
   "license": "Apache-2.0",
   "require": {
     "php": "^7.0",
