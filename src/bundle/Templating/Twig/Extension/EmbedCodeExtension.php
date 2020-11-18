@@ -33,7 +33,7 @@ class EmbedCodeExtension extends \Ethinking\EthinkingPushApiBundle\Templating\Tw
     {
         return [
             new TwigFunction(
-                'ez_push_connector_embed_code',
+                'ibexa_push_connector_embed_code',
                 [$this, 'generate'],
                 [
                     'is_safe' => ['html'],

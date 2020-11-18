@@ -21,13 +21,13 @@ composer require ethinking/ibexa-push-connector
 
 == Preparation
 
-. Create ibexa_push_connector.yaml in the config/routes/ with the
+. Create ezplatform_push_connector.yaml in the config/routes/ with the
 next code:
 +
 [source,yaml]
 ----
-ibexa_push_connector:
-  resource: "@IbexaPushConnectorBundle/Resources/config/routing.yaml"
+ezplatform_push_connector:
+  resource: "@EzPlatformPushConnectorBundle/Resources/config/routing.yaml"
   prefix:   /
 ----
 . Create push_mapping.yaml in the config/packages/ with the format:
@@ -93,7 +93,7 @@ php bin/console c:c
 TIP: If you're getting an error about missing dependencies in the entrypoints.json, try to delete manually "public/assets/ezplatform"
 directory and update assets again using command "composer install". Also make sure you have the next records in the config/bundles.php:
 ----
-Ethinking\PushConnectorBundle\IbexaPushConnectorBundle::class => ['all' => true],
+Ethinking\PushConnectorBundle\EzPlatformPushConnectorBundle::class => ['all' => true],
 Ethinking\EthinkingPushApiBundle\EthinkingPushApiBundle::class => ['all' => true],
 ----
 
@@ -104,19 +104,11 @@ http://YOUR_WEBSITE_URL/admin/push/mainsettings
 
 Fill out fields on the "Main settings" page with the received information.
 
-image::push-connector/main-settings.png[]
-
 Create a new channel on the "Channels" page http://YOUR_WEBSITE_URL/admin/push/channel
-
-image::push-connector/channel.png[]
-
 
 == Push history
 
 You can review status of pushes on the archive page http://YOUR_WEBSITE_URL/admin/push/archive
-
-image::push-connector/archive.png[]
-
 
 == Dependencies
 
