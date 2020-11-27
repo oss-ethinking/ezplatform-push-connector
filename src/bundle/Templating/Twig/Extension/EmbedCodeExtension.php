@@ -4,6 +4,7 @@ namespace Ethinking\PushConnectorBundle\Templating\Twig\Extension;
 
 use Ethinking\EthinkingPushApiBundle\Entity\Channel;
 use Ethinking\EthinkingPushApiBundle\Service\PushApiInstance;
+use Ethinking\PushConnectorBundle\Exceptions\PushConnectorException;
 use Ethinking\PushConnectorBundle\Service\PushService;
 use Ethinking\EthinkingPushApiBundle\Service\PushApiService;
 use Symfony\Component\HttpFoundation\Request;
@@ -44,6 +45,12 @@ class EmbedCodeExtension extends \Ethinking\EthinkingPushApiBundle\Templating\Tw
 
     public function generate(Environment $environment, $config = []): string
     {
+        if (empty($this->pushApiService)) {
+            throw new PushConnectorException(
+                "Unable to generate push connector embed code because no settings were found. "
+                . "Remove the embed code placeholder and fill out main settings form");
+        }
+
         /** @var Channel $channel */
         $channel = $this->pushApiService->getDefaultWebPushChannel();
 
