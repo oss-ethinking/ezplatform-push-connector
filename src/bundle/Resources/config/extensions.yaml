@@ -1,7 +1,10 @@
 services:
     _defaults:
-        autoconfigure: true
+        autoconfigure: false
         autowire: true
         public: false
 
-    Ethinking\PushConnectorBundle\Templating\Twig\Extension\EmbedCodeExtension: ~
+    Ethinking\PushConnectorBundle\Templating\Twig\Extension\EmbedCodeExtension:
+        arguments:
+            - '@Ethinking\PushConnectorBundle\Service\PushService'
+            - '@Symfony\Component\HttpFoundation\UrlHelper'
