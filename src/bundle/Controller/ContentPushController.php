@@ -95,12 +95,10 @@ class ContentPushController extends Controller
         }
 
         try {
-
-            //Check the supported Content field mapping
+            // Check the supported Content field mapping
             $channelsFieldsValueMapping = $this->contentMapperService->getFieldsMappingFieldValue($location->getContent());
             $urlPath = $this->urlAliasService->reverseLookup($location)->path;
-            // @todo Unnecessary conversion (string)$urlPath, $urlPath is already string
-            $this->contentPushService->pushContent($channelsFieldsValueMapping, (string)$urlPath);
+            $this->contentPushService->pushContent($channelsFieldsValueMapping, $urlPath);
 
             //@todo EventListener on Success?
             $this->notificationHandler->success(

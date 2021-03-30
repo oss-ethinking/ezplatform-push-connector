@@ -2,28 +2,28 @@
 
 namespace Ethinking\PushConnector\EzPlatform\UI\Menu\EventSubscriber;
 
+use eZ\Publish\API\Repository\Exceptions\BadStateException;
+use eZ\Publish\API\Repository\Exceptions\InvalidArgumentException;
 use eZ\Publish\API\Repository\PermissionResolver;
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use Ethinking\PushConnector\Connector\Services\ConfigurationDefinitionService;
-use EzSystems\EzPlatformAdminUi\Specification\ContentType\ContentTypeIsUser;
 use EzSystems\EzPlatformAdminUi\Tab\AbstractEventDispatchingTab;
 use EzSystems\EzPlatformAdminUi\Tab\ConditionalTabInterface;
 use EzSystems\EzPlatformAdminUi\Tab\OrderedTabInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Environment;
 
 class PushContentViewTabSubscriber extends AbstractEventDispatchingTab implements OrderedTabInterface, ConditionalTabInterface
 {
 
-    /** @var \eZ\Publish\API\Repository\PermissionResolver */
+    /** @var PermissionResolver */
     private $permissionResolver;
 
-    /** @var \eZ\Publish\Core\MVC\ConfigResolverInterface */
+    /** @var ConfigResolverInterface */
     private $configResolver;
     /**
-     * @var \Ethinking\PushConnector\Connector\Services\ConfigurationDefinitionService
+     * @var ConfigurationDefinitionService
      */
     private $configurationDefinitionService;
 
@@ -69,8 +69,8 @@ class PushContentViewTabSubscriber extends AbstractEventDispatchingTab implement
     /**
      * @param array $parameters
      * @return bool
-     * @throws \eZ\Publish\API\Repository\Exceptions\BadStateException
-     * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException
+     * @throws BadStateException
+     * @throws InvalidArgumentException
      */
     public function evaluate(array $parameters): bool
     {
@@ -89,18 +89,11 @@ class PushContentViewTabSubscriber extends AbstractEventDispatchingTab implement
     /**
      * @param array $contextParameters
      * @return array
-     * @throws \eZ\Publish\API\Repository\Exceptions\NotFoundException
      */
     public function getTemplateParameters(array $contextParameters = []): array
     {
-        /** @var \eZ\Publish\API\Repository\Values\Content\Location $location */
-//        $location = $contextParameters['location'];
-//        $contentId = $location->getContentInfo()->id;
-
-        $viewParameters = [
+        return [
             'data' => 'value'
         ];
-
-        return $viewParameters;
     }
 }

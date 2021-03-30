@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Ethinking\PushConnector\Connector\Channels\Event;
 
+use Iterator;
 use Symfony\Contracts\EventDispatcher\Event;
 
 /**
@@ -13,25 +14,22 @@ use Symfony\Contracts\EventDispatcher\Event;
 class AfterResolverChannelsConfiguration extends Event
 {
     /** @var string  */
-    public const AFTER_RESOLVER_CHANNELS_MAPPING = 'after_resolver_channels.mapping';
+    const AFTER_RESOLVER_CHANNELS_MAPPING = 'after_resolver_channels.mapping';
 
-    /** @var \Iterator */
+    /** @var Iterator */
     private $enabledMapper;
 
     /**
-     * AfterResolverChannelsConfiguration constructor.
-     * @param \Iterator $enabledMapper
+     * @param Iterator $enabledMapper
      */
-    public function __construct(
-        \Iterator $enabledMapper
-    ) {
+    public function __construct(Iterator $enabledMapper) {
         $this->enabledMapper = $enabledMapper;
     }
 
     /**
-     * @return \Iterator
+     * @return Iterator
      */
-    public function getEnabledMapper():\Iterator
+    public function getEnabledMapper(): Iterator
     {
         return $this->enabledMapper;
     }

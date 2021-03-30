@@ -29,7 +29,6 @@ class PushConnectorMenuSubscriber implements EventSubscriberInterface, Translati
 
 
     /**
-     * @todo add permissions
      * @var PermissionResolver
      */
     private $permissionResolver;

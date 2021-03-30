@@ -2,11 +2,11 @@
 
 namespace Ethinking\PushConnectorBundle\Service;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Ethinking\EthinkingPushApiBundle\Service\PushApiInstance;
 use Ethinking\EthinkingPushApiBundle\Service\PushApiService;
 use Ethinking\EthinkingPushApiBundle\Entity\Settings;
 use Ethinking\PushConnectorBundle\Entity\MainSettings;
-use Ethinking\PushConnectorBundle\Repository\MainSettingsRepository;
 
 /**
  * Class PushService
@@ -21,11 +21,11 @@ class PushService
 
     /**
      * @param PushApiService $pushApiService
-     * @param MainSettingsRepository $mainSettingsRepository
+     * @param EntityManagerInterface $em
      */
-    public function __construct(PushApiService $pushApiService, MainSettingsRepository $mainSettingsRepository)
+    public function __construct(PushApiService $pushApiService, EntityManagerInterface $em)
     {
-        /** @var MainSettings $mainSettings */
+        $mainSettingsRepository = $em->getRepository(MainSettings::class);
         $mainSettings = $mainSettingsRepository->findOneBy([]);
 
         if (!empty($mainSettings)) {

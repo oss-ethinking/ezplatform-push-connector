@@ -7,7 +7,6 @@ use Ethinking\EthinkingPushApiBundle\Service\PushApiInstance;
 use Ethinking\PushConnectorBundle\Exceptions\PushConnectorException;
 use Ethinking\PushConnectorBundle\Service\PushService;
 use Ethinking\EthinkingPushApiBundle\Service\PushApiService;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\UrlHelper;
 use Twig\TwigFunction;
 use Twig\Environment;

@@ -74,7 +74,7 @@ class ChannelController extends Controller
             if ($hasAdded) {
                 $this->pushApiService->clearDefaultWebPushChannel();
                 $this->addFlash('success', $translator->trans('push_delivery_channel_creation_success', [], 'forms'));
-                return new RedirectResponse($this->generateUrl('ezplatform.push.channel.view'));
+                return new RedirectResponse($this->getViewUrl());
             } else {
                 $this->addFlash('error', $translator->trans('push_delivery_creation_failed', [], 'forms'));
                 return new RedirectResponse($this->generateUrl('ezplatform.push.channel.create'));
@@ -99,7 +99,7 @@ class ChannelController extends Controller
         $channel = $this->getChannel($id);
         if (empty($channel)) {
             $this->addFlash('error', $translator->trans('push_delivery_channel_not_found', [], 'forms'));
-            return new RedirectResponse($this->generateUrl('ezplatform.push.channel.view'));
+            return new RedirectResponse($this->getViewUrl());
         }
 
         $form = $this->formFactory->saveChannel(
@@ -115,7 +115,7 @@ class ChannelController extends Controller
             if ($hasUpdated) {
                 $this->clearDefaultChannelById($id);
                 $this->addFlash('success', $translator->trans('push_delivery_channel_save_success', [], 'forms'));
-                return new RedirectResponse($this->generateUrl('ezplatform.push.channel.view'));
+                return new RedirectResponse($this->getViewUrl());
             } else {
                 $this->addFlash('error', $translator->trans('push_delivery_update_failed', [], 'forms'));
                 return new RedirectResponse($this->generateUrl('ezplatform.push.channel.edit', ['id' => $id]));
@@ -140,7 +140,7 @@ class ChannelController extends Controller
         $ids = $request->get("id");
 
         if (empty($ids) || !is_array($ids)) {
-            return new RedirectResponse($this->generateUrl('ezplatform.push.channel.view'));
+            return new RedirectResponse($this->getViewUrl());
         }
 
         foreach ($ids as $id) {
@@ -149,7 +149,7 @@ class ChannelController extends Controller
         }
 
         $this->addFlash('success', $translator->trans('push_delivery_channel_remove_success', [], 'forms'));
-        return new RedirectResponse($this->generateUrl('ezplatform.push.channel.view'));
+        return new RedirectResponse($this->getViewUrl());
     }
 
     /**
@@ -166,15 +166,6 @@ class ChannelController extends Controller
     }
 
     /**
-     * @return RedirectResponse
-     */
-    public function downloadJsLibrary()
-    {
-        $fileUrl = 'https://testcopyfile.s3.eu-central-1.amazonaws.com/test_file.zip';
-        return new RedirectResponse($fileUrl);
-    }
-
-    /**
      * @param $id
      * @return Channel| null
      */
@@ -184,5 +175,13 @@ class ChannelController extends Controller
         $channel = $this->pushApiService->getChannel($id);
 
         return $channel ?? new Channel();
+    }
+
+    /**
+     * @return string
+     */
+    private function getViewUrl()
+    {
+        return $this->generateUrl('ezplatform.push.channel.view');
     }
 }

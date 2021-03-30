@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Ethinking\PushConnector\EzPlatform\UI\Permission;
 
+use eZ\Publish\API\Repository\Exceptions\InvalidArgumentException;
 use eZ\Publish\API\Repository\PermissionResolver;
 
 /**
@@ -12,16 +13,14 @@ use eZ\Publish\API\Repository\PermissionResolver;
  */
 class PermissionChecker
 {
-    /** @var \eZ\Publish\API\Repository\PermissionResolver*/
+    /** @var PermissionResolver */
     private $permissionResolver;
 
     /**
      * PermissionChecker constructor.
-     * @param \eZ\Publish\API\Repository\PermissionResolver $permissionResolver
+     * @param PermissionResolver $permissionResolver
      */
-    public function __construct(
-        PermissionResolver $permissionResolver
-    ) {
+    public function __construct(PermissionResolver $permissionResolver) {
         $this->permissionResolver = $permissionResolver;
     }
 
@@ -29,13 +28,10 @@ class PermissionChecker
      * @param $module
      * @param $function
      * @return bool
-     * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function checkUserAccess($module, $function): bool
     {
-        if (!$this->permissionResolver->hasAccess($module, $function)) {
-            return false;
-        }
-        return true;
+        return $this->permissionResolver->hasAccess($module, $function);
     }
 }

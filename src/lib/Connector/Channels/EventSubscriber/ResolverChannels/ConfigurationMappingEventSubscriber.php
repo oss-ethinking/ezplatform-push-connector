@@ -12,16 +12,16 @@ use EzSystems\EzPlatformAdminUi\Notification\TranslatableNotificationHandlerInte
  */
 final class ConfigurationMappingEventSubscriber extends AbstractSubscriber
 {
-    /** @var \Ethinking\PushConnector\Connector\Channels\Registry\ChannelsRegistry */
+    /** @var ChannelsRegistry */
     private $channelsRegistry;
 
-    /** @var \EzSystems\EzPlatformAdminUi\Notification\TranslatableNotificationHandlerInterface */
+    /** @var TranslatableNotificationHandlerInterface */
     private $notificationHandler;
 
     /**
      * ConfigurationMappingEventSubscriber constructor.
-     * @param \Ethinking\PushConnector\Connector\Channels\Registry\ChannelsRegistry $channelsRegistry
-     * @param \EzSystems\EzPlatformAdminUi\Notification\TranslatableNotificationHandlerInterface $notificationHandler
+     * @param ChannelsRegistry $channelsRegistry
+     * @param TranslatableNotificationHandlerInterface $notificationHandler
      */
     public function __construct(
         ChannelsRegistry $channelsRegistry,
@@ -40,13 +40,5 @@ final class ConfigurationMappingEventSubscriber extends AbstractSubscriber
                 ['onAfterResolverChannelsMapping']
             ]
         ];
-    }
-
-    /**
-     * @param \Ethinking\PushConnector\Connector\Channels\Event\AfterResolverChannelsConfiguration $event
-     */
-    public function onAfterResolverChannelsMapping(AfterResolverChannelsConfiguration $event)
-    {
-        //$enabledMapper = $event->getEnabledMapper();
     }
 }

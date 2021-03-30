@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Ethinking\PushConnector\Connector\Services;
 
+use ArrayObject;
 use eZ\Publish\API\Repository\Values\Content\Content;
 use Ethinking\PushConnector\Connector\Channels\Event\AfterResolverChannelsConfiguration;
 use Ethinking\PushConnector\Connector\Channels\Mapper\Provider\ChannelsMapperConfiguration;
@@ -18,28 +19,28 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
  */
 class ConfigurationDefinitionService
 {
-    /** @var \EzSystems\EzPlatformAdminUi\Notification\TranslatableNotificationHandlerInterface */
+    /** @var TranslatableNotificationHandlerInterface */
     private $notificationHandler;
 
-    /** @var \Symfony\Component\EventDispatcher\EventDispatcherInterface */
+    /** @var EventDispatcherInterface */
     private $eventDispatcher;
 
-    /** @var \Ethinking\PushConnector\Connector\Channels\Registry\ChannelsRegistry */
+    /** @var ChannelsRegistry */
     private $channelsRegistry;
 
-    /** @var \Ethinking\PushConnector\Connector\Channels\Mapper\Provider\ChannelsMapperConfiguration */
+    /** @var ChannelsMapperConfiguration */
     private $channelsMapperConfiguration;
 
-    /** @var \Ethinking\PushConnector\Connector\Channels\Registry\ContentFieldsMapperRegistryInterface */
+    /** @var ContentFieldsMapperRegistryInterface */
     private $contentFieldsMapperRegistry;
 
     /**
      * ConfigurationDefinitionService constructor.
-     * @param \EzSystems\EzPlatformAdminUi\Notification\TranslatableNotificationHandlerInterface $notificationHandler
-     * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $eventDispatcher
-     * @param \Ethinking\PushConnector\Connector\Channels\Registry\ChannelsRegistry $channelsRegistry
-     * @param \Ethinking\PushConnector\Connector\Channels\Mapper\Provider\ChannelsMapperConfiguration $channelsMapperConfiguration
-     * @param \Ethinking\PushConnector\Connector\Channels\Registry\ContentFieldsMapperRegistryInterface $contentFieldsMapperRegistry
+     * @param TranslatableNotificationHandlerInterface $notificationHandler
+     * @param EventDispatcherInterface $eventDispatcher
+     * @param ChannelsRegistry $channelsRegistry
+     * @param ChannelsMapperConfiguration $channelsMapperConfiguration
+     * @param ContentFieldsMapperRegistryInterface $contentFieldsMapperRegistry
      */
     public function __construct(
         TranslatableNotificationHandlerInterface $notificationHandler,
@@ -56,10 +57,10 @@ class ConfigurationDefinitionService
     }
 
     /**
-     * @param \eZ\Publish\API\Repository\Values\Content\Content $content
-     * @return \ArrayObject|null
+     * @param Content $content
+     * @return ArrayObject|null
      */
-    public function channelResolverConfiguration(Content $content): ? \ArrayObject
+    public function channelResolverConfiguration(Content $content)
     {
         $contentTypeIdentifier = $content->getContentType()->identifier;
         try {
@@ -67,14 +68,14 @@ class ConfigurationDefinitionService
                 ->resolve()
                 ->channelProviderMapper($contentTypeIdentifier);
 
-            //not configured contentType
+            // Not configured contentType
             if (!$enabledMapper) {
                 return null;
             }
-            //e.g check if what you have configured is available or add new parameters
-            $enabledMapper = new \ArrayObject($enabledMapper);
+            // e.g check if what you have configured is available or add new parameters
+            $enabledMapper = new ArrayObject($enabledMapper);
 
-            //not AvailableChannelProvider implementation
+            // Not AvailableChannelProvider implementation
             if (!$this->isAvailableChannelProvider($enabledMapper)) {
                 return null;
             }
@@ -109,12 +110,12 @@ class ConfigurationDefinitionService
     }
 
     /**
-     * @param \eZ\Publish\API\Repository\Values\Content\Content $content
-     * @return \ArrayObject|null
+     * @param Content $content
+     * @return ArrayObject|null
      */
-    public function getSupportedFields(Content $content): ? \ArrayObject
+    public function getSupportedFields(Content $content): ? ArrayObject
     {
-        //get enabled Mapper configurations for this content
+        // Get enabled Mapper configurations for this content
         $enabledMapper = $this->channelResolverConfiguration($content);
         if (!$enabledMapper) {
             return null;
@@ -134,16 +135,16 @@ class ConfigurationDefinitionService
     }
 
     /**
-     * @param \eZ\Publish\API\Repository\Values\Content\Content $content
+     * @param Content $content
      * @param $fields
      * @return bool
      */
     public function isSupportedFieldTypes(Content $content, $fields): bool
     {
-        $suportedFields = true;
+        $supportedFields = true;
         foreach ($fields as $field) {
             $fieldDefinition = $content->getField($field);
-            //the configuration contains unsupported fieldType
+            // The configuration contains unsupported fieldType
             if (!$this->contentFieldsMapperRegistry->hasMapper($fieldDefinition->fieldTypeIdentifier)) {
                 $this->notificationHandler->error(
                 /** @Desc("Push Connector: '%content_type_identifier%' content field type '%field%' for '%identifier%' is not supported") */
@@ -156,9 +157,9 @@ class ConfigurationDefinitionService
                     ],
                     'channels'
                 );
-                $suportedFields = false;
+                $supportedFields = false;
             }
         }
-        return $suportedFields;
+        return $supportedFields;
     }
 }

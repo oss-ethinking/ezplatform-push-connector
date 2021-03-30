@@ -2,10 +2,11 @@
 
 namespace Ethinking\PushConnectorBundle\Controller;
 
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ObjectRepository;
 use Ethinking\EthinkingPushApiBundle\Service\PushApiInstance;
 use Ethinking\PushConnector\EzPlatform\Repository\Form\Factory\FormFactory;
 use Ethinking\PushConnectorBundle\Entity\MainSettings;
-use Ethinking\PushConnectorBundle\Repository\MainSettingsRepository;
 use Ethinking\PushConnector\EzPlatform\UI\Permission\PermissionChecker;
 use Ethinking\PushConnectorBundle\Service\PushService;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -27,7 +28,7 @@ class MainSettingsController extends Controller
     private $formFactory;
 
     /**
-     * @var MainSettingsRepository
+     * @var ObjectRepository
      */
     private $mainSettingsRepository;
 
@@ -43,15 +44,15 @@ class MainSettingsController extends Controller
 
     /**
      * @param FormFactory $formFactory
-     * @param MainSettingsRepository $mainSettingsRepository
+     * @param EntityManagerInterface $em
      * @param PushService $pushService
      * @param PermissionChecker $permissionChecker
      */
-    public function __construct(FormFactory $formFactory, MainSettingsRepository $mainSettingsRepository,
+    public function __construct(FormFactory $formFactory, EntityManagerInterface $em,
                                 PushService $pushService, PermissionChecker $permissionChecker)
     {
         $this->formFactory = $formFactory;
-        $this->mainSettingsRepository = $mainSettingsRepository;
+        $this->mainSettingsRepository = $em->getRepository(MainSettings::class);
         $this->pushApiService = $pushService->getPushApiService();
         $this->permissionChecker = $permissionChecker;
     }
@@ -72,7 +73,7 @@ class MainSettingsController extends Controller
             $this->addFlash('error', $translator->trans('push_delivery_cache_clear_failed', [], 'forms'));
         }
 
-        return new RedirectResponse($this->generateUrl('ezplatform.push.main_settings.view'));
+        return new RedirectResponse($this->getViewUrl());
     }
 
     /**
@@ -94,7 +95,7 @@ class MainSettingsController extends Controller
 
         $form = $this->formFactory->saveSettings(
             $mainSettings,
-            $this->generateUrl('ezplatform.push.main_settings.view')
+            $this->getViewUrl()
         );
 
         $form->handleRequest($request);
@@ -103,7 +104,7 @@ class MainSettingsController extends Controller
             $this->updateSettings($form->getData(), $mainSettings);
             $translator = $this->get('translator');
             $this->addFlash('success', $translator->trans('push_delivery_settings_saved', [], 'forms'));
-            return new RedirectResponse($this->generateUrl('ezplatform.push.main_settings.view'));
+            return new RedirectResponse($this->getViewUrl());
         }
 
         return $this->render('@ezdesign/main_settings.html.twig', [
@@ -138,5 +139,12 @@ class MainSettingsController extends Controller
         $settings = $this->mainSettingsRepository->findOneBy([]);
 
         return $settings ?? new MainSettings();
+    }
+
+    /**
+     * @return string
+     */
+    private function getViewUrl() {
+        return $this->generateUrl('ezplatform.push.main_settings.view');
     }
 }
