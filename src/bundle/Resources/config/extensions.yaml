@@ -6,5 +6,6 @@ services:
 
     Ethinking\PushConnectorBundle\Templating\Twig\Extension\EmbedCodeExtension:
         arguments:
-            - '@Ethinking\PushConnectorBundle\Service\PushService'
+            - '@Doctrine\ORM\EntityManagerInterface'
+            - '@Ethinking\EthinkingPushApiBundle\Service\PushApiService'
             - '@Symfony\Component\HttpFoundation\UrlHelper'

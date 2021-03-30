@@ -2,6 +2,7 @@
 
 namespace Ethinking\PushConnectorBundle\Templating\Twig\Extension;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Ethinking\EthinkingPushApiBundle\Entity\Channel;
 use Ethinking\EthinkingPushApiBundle\Service\PushApiInstance;
 use Ethinking\PushConnectorBundle\Exceptions\PushConnectorException;
@@ -14,6 +15,11 @@ use Twig\Environment;
 class EmbedCodeExtension extends \Ethinking\EthinkingPushApiBundle\Templating\Twig\Extension\EmbedCodeExtension
 {
     /**
+     * @var EntityManagerInterface
+     */
+    private $em;
+
+    /**
      * @var PushApiInstance
      */
     private $pushApiService;
@@ -23,9 +29,10 @@ class EmbedCodeExtension extends \Ethinking\EthinkingPushApiBundle\Templating\Tw
      */
     private $absoluteUrl;
 
-    public function __construct(PushService $pushService, UrlHelper $urlHelper)
+    public function __construct(EntityManagerInterface $em, PushApiService $pushApiService, UrlHelper $urlHelper)
     {
-        $this->pushApiService = $pushService->getPushApiService();
+        $this->em = $em;
+        $this->pushApiService = $pushApiService;
         $this->absoluteUrl = $urlHelper->getAbsoluteUrl("/");
     }
 
@@ -44,6 +51,9 @@ class EmbedCodeExtension extends \Ethinking\EthinkingPushApiBundle\Templating\Tw
 
     public function generate(Environment $environment, $config = []): string
     {
+        $pushService = new PushService($this->pushApiService, $this->em);
+        $this->pushApiService = $pushService->getPushApiService();
+
         if (empty($this->pushApiService)) {
             throw new PushConnectorException(
                 "Unable to generate push connector embed code because no settings were found. "
