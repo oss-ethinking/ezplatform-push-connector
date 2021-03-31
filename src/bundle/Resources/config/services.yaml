@@ -13,6 +13,18 @@ services:
             - '@logger'
             - '@Symfony\Contracts\Cache\CacheInterface'
 
+    Ethinking\PushConnectorBundle\Command\CreateDatabaseTablesCommand:
+        arguments:
+            - '@Doctrine\ORM\EntityManagerInterface'
+        tags:
+            - { name: 'console.command' }
+
+    Ethinking\PushConnectorBundle\Command\DropDatabaseTablesCommand:
+        arguments:
+            - '@Doctrine\ORM\EntityManagerInterface'
+        tags:
+            - { name: 'console.command' }
+
     Ethinking\PushConnectorBundle\Service\PushService:
         arguments:
             - '@Ethinking\EthinkingPushApiBundle\Service\PushApiService'
