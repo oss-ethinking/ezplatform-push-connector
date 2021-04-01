@@ -41,4 +41,11 @@ final class ConfigurationMappingEventSubscriber extends AbstractSubscriber
             ]
         ];
     }
+
+    /**
+     * @param AfterResolverChannelsConfiguration $event
+     */
+    public function onAfterResolverChannelsMapping(AfterResolverChannelsConfiguration $event)
+    {
+    }
 }
