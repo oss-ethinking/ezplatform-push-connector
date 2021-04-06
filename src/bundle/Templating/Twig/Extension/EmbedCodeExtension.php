@@ -88,6 +88,13 @@ class EmbedCodeExtension extends \Ethinking\EthinkingPushApiBundle\Templating\Tw
                     'serviceWorkerPath' => "/service-worker.js",
                 ],
             ],
+            'ui' => [
+                'template' => [
+                    'modal' => [
+                        'logo' => "{$channel->getFallbackUrl()}/bundles/ezplatformpushconnector/img/push-delivery-logo.jpg"
+                    ]
+                ]
+            ]
         ]);
     }
 }
