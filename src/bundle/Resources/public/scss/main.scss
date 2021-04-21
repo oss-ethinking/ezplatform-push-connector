@@ -1,5 +1,11 @@
-.alert ul {
-  margin-bottom: 0;
-  padding-left: 5px;
-  list-style-type: none;
+.alert {
+  ul {
+    margin-bottom: 0;
+    padding-left: 5px;
+    list-style-type: none;
+  }
+
+  .close {
+    text-decoration: none;
+  }
 }

@@ -1,6 +1,9 @@
 {% extends "@ezdesign/ui/layout.html.twig" %}
 {% trans_default_domain 'views' %}
 {% block title %}{{ 'push.view.main_settings'|trans|desc('eZ Platform Push Connector Main Settings') }}{% endblock %}
+{% block stylesheets %}
+    {{ encore_entry_link_tags('ezplatform-push-connector-main-css', null, 'ezplatform') }}
+{% endblock %}
 {% block content %}
     <div class="row align-items-stretch ez-main-row">
         <div class="px-0 ez-content-container">
